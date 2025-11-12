@@ -1,0 +1,9 @@
+# Godot-specific ignores
+.import/
+.export/
+.export_presets.cfg
+.godot/
+
+# System / editor junk
+.DS_Store
+Thumbs.db

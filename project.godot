@@ -1,0 +1,25 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="dead_air"
+config/version="0.1.0"
+run/main_scene="uid://c8conyom331wr"
+config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=165
+config/icon="res://icon.svg"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+textures/default_filters/anisotropic_filtering_level=1
+textures/decals/filter=0
+textures/light_projectors/filter=0
