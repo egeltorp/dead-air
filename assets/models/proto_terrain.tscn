@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://weg0eda6dckf"]
+
+[ext_resource type="PackedScene" uid="uid://cfexcru8071gv" path="res://assets/models/proto_terrain.glb" id="1_wlaqe"]
+[ext_resource type="Texture2D" uid="uid://gxc03l705nw2" path="res://assets/textures/128x128_placeholders/Dirt/Dirt_06-128x128.png" id="2_eutea"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1f3bp"]
+albedo_texture = ExtResource("2_eutea")
+uv1_scale = Vector3(20, 10, 1)
+texture_filter = 0
+
+[node name="proto_terrain" instance=ExtResource("1_wlaqe")]
+
+[node name="Plane" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_1f3bp")

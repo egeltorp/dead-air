@@ -1,36 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=8 format=3 uid="uid://c8conyom331wr"]
 
-[ext_resource type="Texture2D" uid="uid://6pvwjusxgrba" path="res://assets/textures/128x128_placeholders/Dirt/Dirt_01-128x128.png" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
-[ext_resource type="Texture2D" uid="uid://cmbxqhce4r235" path="res://assets/textures/128x128_placeholders/Brick/Brick_02-128x128.png" id="3_sugp2"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0wfyh"]
-size = Vector3(20, 10, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbgi4"]
-albedo_texture = ExtResource("3_sugp2")
-uv1_scale = Vector3(10, 5, 10.01)
-texture_filter = 0
-
-[sub_resource type="BoxMesh" id="BoxMesh_0wfyh"]
-size = Vector3(20, 10, 1)
+[ext_resource type="Texture2D" uid="uid://bjpnwraai4hg4" path="res://assets/textures/128x128_placeholders/Dirt/Dirt_03-128x128.png" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bqshs1x55645b" path="res://assets/models/room.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://weg0eda6dckf" path="res://assets/models/proto_terrain.tscn" id="4_tbgi4"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_sgp6g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
-albedo_texture = ExtResource("1_0wfyh")
-uv1_scale = Vector3(5, 5, 5)
+albedo_texture = ExtResource("2_jyhfs")
+uv1_scale = Vector3(20, 20, 5)
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_o5qli"]
+material = SubResource("StandardMaterial3D_sugp2")
+size = Vector2(50, 50)
 
 [node name="Node3D" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
-
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
-spot_range = 9.31105
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -41,49 +29,22 @@ text = "haha"
 
 [node name="Test_Area" type="Node3D" parent="."]
 
-[node name="Walls" type="StaticBody3D" parent="Test_Area"]
-
-[node name="Wall_1" type="CollisionShape3D" parent="Test_Area/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 10)
-shape = SubResource("BoxShape3D_0wfyh")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Test_Area/Walls/Wall_1"]
-material_override = SubResource("StandardMaterial3D_tbgi4")
-mesh = SubResource("BoxMesh_0wfyh")
-
-[node name="Wall_2" type="CollisionShape3D" parent="Test_Area/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -10)
-shape = SubResource("BoxShape3D_0wfyh")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Test_Area/Walls/Wall_2"]
-mesh = SubResource("BoxMesh_0wfyh")
-skeleton = NodePath("../../Wall_1")
-surface_material_override/0 = SubResource("StandardMaterial3D_tbgi4")
-
-[node name="Wall_3" type="CollisionShape3D" parent="Test_Area/Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 5, 0)
-shape = SubResource("BoxShape3D_0wfyh")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Test_Area/Walls/Wall_3"]
-mesh = SubResource("BoxMesh_0wfyh")
-skeleton = NodePath("../../Wall_1")
-surface_material_override/0 = SubResource("StandardMaterial3D_tbgi4")
-
-[node name="Wall_4" type="CollisionShape3D" parent="Test_Area/Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 5, 0)
-shape = SubResource("BoxShape3D_0wfyh")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Test_Area/Walls/Wall_4"]
-material_override = SubResource("StandardMaterial3D_tbgi4")
-mesh = SubResource("BoxMesh_0wfyh")
-skeleton = NodePath("../../Wall_1")
-
 [node name="Floor" type="StaticBody3D" parent="Test_Area"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Area/Floor"]
 shape = SubResource("WorldBoundaryShape3D_sgp6g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Test_Area/Floor"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_sugp2")
 mesh = SubResource("PlaneMesh_o5qli")
+
+[node name="proto_terrain" parent="Test_Area" instance=ExtResource("4_tbgi4")]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -10.3957, -0.634839, -9.51124)
+
+[node name="proto_terrain2" parent="Test_Area" instance=ExtResource("4_tbgi4")]
+transform = Transform3D(-1.5, 0, 2.59808, 0, 3, 0, -2.59808, 0, -1.5, -10.3957, -3.29517, -9.51124)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Test_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="room" parent="." instance=ExtResource("4_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
