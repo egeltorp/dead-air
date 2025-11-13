@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8conyom331wr"]
+
+[ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_sgp6g"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o5qli"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_sgp6g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_o5qli")
+
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+spot_range = 9.31105
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FPS" type="Label" parent="CanvasLayer"]
+offset_right = 85.0
+offset_bottom = 23.0
+text = "haha"
