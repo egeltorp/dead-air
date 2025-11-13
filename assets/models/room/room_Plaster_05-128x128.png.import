@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwv7is64f147b"
-path.s3tc="res://.godot/imported/room_color_atlas.png-511f43305b2ed9045df85cde5fcd5ba2.s3tc.ctex"
+uid="uid://ckd2s0ran50xx"
+path.s3tc="res://.godot/imported/room_Plaster_05-128x128.png-1996cdf9bb95d39352a26058973a3ab8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "b51bcb9c3adae3058c6cf8bc5d16ec40"
-}
 
 [deps]
 
-source_file="res://assets/models/room_color_atlas.png"
-dest_files=["res://.godot/imported/room_color_atlas.png-511f43305b2ed9045df85cde5fcd5ba2.s3tc.ctex"]
+source_file="res://assets/models/room/room_Plaster_05-128x128.png"
+dest_files=["res://.godot/imported/room_Plaster_05-128x128.png-1996cdf9bb95d39352a26058973a3ab8.s3tc.ctex"]
 
 [params]
 

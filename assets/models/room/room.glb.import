@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cfexcru8071gv"
-path="res://.godot/imported/proto_terrain.glb-d595cf0d6938f11db49b2be9ee8753e2.scn"
+uid="uid://kihvjavhemts"
+path="res://.godot/imported/room.glb-efd52646677cedf8a0db81f5607945e0.scn"
 
 [deps]
 
-source_file="res://assets/models/proto_terrain.glb"
-dest_files=["res://.godot/imported/proto_terrain.glb-d595cf0d6938f11db49b2be9ee8753e2.scn"]
+source_file="res://assets/models/room/room.glb"
+dest_files=["res://.godot/imported/room.glb-efd52646677cedf8a0db81f5607945e0.scn"]
 
 [params]
 

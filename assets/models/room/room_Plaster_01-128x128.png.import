@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coeewrv6rglvd"
-path.s3tc="res://.godot/imported/clouds.png-a944dd817d74fea725de5db08cf2d1fe.s3tc.ctex"
+uid="uid://cjeardrta5dl3"
+path.s3tc="res://.godot/imported/room_Plaster_01-128x128.png-ef343b7d536785d6a084c2f4de21f8a5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "38a8c83de9a8ebd465090b5234039e9a"
+}
 
 [deps]
 
-source_file="res://assets/clouds.png"
-dest_files=["res://.godot/imported/clouds.png-a944dd817d74fea725de5db08cf2d1fe.s3tc.ctex"]
+source_file="res://assets/models/room/room_Plaster_01-128x128.png"
+dest_files=["res://.godot/imported/room_Plaster_01-128x128.png-ef343b7d536785d6a084c2f4de21f8a5.s3tc.ctex"]
 
 [params]
 
