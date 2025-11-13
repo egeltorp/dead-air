@@ -21,7 +21,7 @@
 shader = ExtResource("5_tbgi4")
 shader_parameter/resolution_x = 480
 shader_parameter/resolution_y = 270
-shader_parameter/color_bit_depth = 16
+shader_parameter/color_bit_depth = 5
 shader_parameter/dither_strength = 0.03
 shader_parameter/jitter_amount = 0.0
 shader_parameter/jitter_speed = 0.0
@@ -35,7 +35,7 @@ background_mode = 1
 background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.0
 ambient_light_source = 2
-ambient_light_color = Color(0.4316, 0.52, 0.52, 1)
+ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.0
 reflected_light_source = 1
 fog_enabled = true
@@ -109,7 +109,7 @@ text = "FPS: 120"
 environment = SubResource("Environment_jyhfs")
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
-transform = Transform3D(0.77809, 0, -0.628153, 0, 1, 0, 0.628153, 0, 0.77809, -1.25174, 0, 0.4187)
+transform = Transform3D(0.77809, 0, -0.628153, 0, 1, 0, 0.628153, 0, 0.77809, -1.33951, 0, 0.4187)
 
 [node name="Test_Area" type="Node3D" parent="."]
 
