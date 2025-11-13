@@ -1,9 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=9 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://bjpnwraai4hg4" path="res://assets/textures/128x128_placeholders/Dirt/Dirt_03-128x128.png" id="2_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://bqshs1x55645b" path="res://assets/models/room.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bptyk6rk5geyt" path="res://assets/models/room.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://weg0eda6dckf" path="res://assets/models/proto_terrain.tscn" id="4_tbgi4"]
+
+[sub_resource type="Environment" id="Environment_jyhfs"]
+background_mode = 1
+background_color = Color(0.296299, 0.340056, 0.372742, 1)
+background_energy_multiplier = 0.0
+ambient_light_energy = 0.0
+reflected_light_source = 1
+fog_enabled = true
+fog_light_color = Color(0.310813, 0.338978, 0.383251, 1)
+fog_light_energy = 0.52
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_sgp6g"]
 
@@ -17,6 +27,9 @@ material = SubResource("StandardMaterial3D_sugp2")
 size = Vector2(50, 50)
 
 [node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jyhfs")
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
 
@@ -32,6 +45,7 @@ text = "haha"
 [node name="Floor" type="StaticBody3D" parent="Test_Area"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Area/Floor"]
+visible = false
 shape = SubResource("WorldBoundaryShape3D_sgp6g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Test_Area/Floor"]
@@ -45,6 +59,7 @@ transform = Transform3D(-1.5, 0, 2.59808, 0, 3, 0, -2.59808, 0, -1.5, -10.3957, 
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Test_Area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 
 [node name="room" parent="." instance=ExtResource("4_jyhfs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3263, 0)
