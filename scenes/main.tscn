@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=34 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://bjpnwraai4hg4" path="res://assets/textures/128x128_placeholders/Dirt/Dirt_03-128x128.png" id="2_jyhfs"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://d0gljbnf6gs0y" path="res://assets/textures/rug.png" id="14_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://vab61w0hylf6" path="res://assets/models/map.glb" id="15_0ld40"]
 [ext_resource type="PackedScene" uid="uid://c7h3331a6oog0" path="res://assets/models/dish_big.glb" id="15_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://tujn71aqlglu" path="res://assets/models/cabinet.glb" id="16_gqmmt"]
 [ext_resource type="Script" uid="uid://n1imrwfcpra8" path="res://scenes/blinking_light.gd" id="16_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://dusjoq2m7jy28" path="res://assets/models/posters.glb" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://xcb0eir3pdtw" path="res://assets/models/door.glb" id="18_dp3eg"]
@@ -199,6 +200,12 @@ transform = Transform3D(-4.67712e-08, 0, 1.07, 0, 1.07, 0, -1.07, 0, -4.67712e-0
 
 [node name="map" parent="room/Decorations" instance=ExtResource("15_0ld40")]
 transform = Transform3D(-2.77567e-08, 0, 0.635, 0, 0.635, 0, -0.635, 0, -2.77567e-08, -1.9724, 0.374846, 0.475712)
+
+[node name="cabinet" parent="room/Decorations" instance=ExtResource("16_gqmmt")]
+transform = Transform3D(0.998135, 0, -0.0610485, 0, 1, 0, 0.0610485, 0, 0.998135, -0.961384, -0.506403, -2.45744)
+
+[node name="cabinet2" parent="room/Decorations" instance=ExtResource("16_gqmmt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.282936, -0.506403, -2.45744)
 
 [node name="outside" parent="." instance=ExtResource("12_eb6dy")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.31702, 1.12, 0.144207)
