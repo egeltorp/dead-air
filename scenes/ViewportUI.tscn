@@ -1,4 +1,11 @@
-[gd_scene format=3 uid="uid://uhkpmqldcmki"]
+[gd_scene load_steps=5 format=3 uid="uid://uhkpmqldcmki"]
+
+[ext_resource type="FontFile" uid="uid://7gjok8h2jbx8" path="res://assets/fonts/monofonto rg.otf" id="1_5x2jv"]
+[ext_resource type="Shader" uid="uid://cnny2vj015j05" path="res://shaders/ViewportUI.gdshader" id="1_jlfgd"]
+[ext_resource type="Script" uid="uid://c1v56uxq5giju" path="res://scripts/waveform_drawer.gd" id="1_mcjyk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jlfgd"]
+shader = ExtResource("1_jlfgd")
 
 [node name="ViewportUI" type="Control"]
 layout_mode = 3
@@ -18,11 +25,85 @@ offset_right = 640.0
 offset_bottom = 480.0
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="TopLabel" type="Label" parent="."]
 layout_mode = 1
 offset_right = 54.0
 offset_bottom = 34.0
+theme_override_fonts/font = ExtResource("1_5x2jv")
 theme_override_font_sizes/font_size = 24
-text = "TEST"
+text = "CH-04 	                                  HF / 7.21 MHz"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="WaveformDrawer" type="Node2D" parent="."]
+script = ExtResource("1_mcjyk")
+
+[node name="Incoming" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Incoming"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 73.0
+offset_top = 29.0
+offset_right = 197.0
+offset_bottom = 67.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_5x2jv")
+theme_override_font_sizes/font_size = 31
+text = "INCOMING"
+
+[node name="WaveformBox" type="Control" parent="Incoming"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 109.0
+offset_right = 620.0
+offset_bottom = 211.0
+grow_horizontal = 2
+
+[node name="Decrypting" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 174.0
+offset_right = 40.0
+offset_bottom = 214.0
+
+[node name="Label" type="Label" parent="Decrypting"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 73.0
+offset_top = 29.0
+offset_right = 197.0
+offset_bottom = 67.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_5x2jv")
+theme_override_font_sizes/font_size = 31
+text = "ANALYSIS"
+
+[node name="WaveformBox" type="Control" parent="Decrypting"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 109.0
+offset_right = 620.0
+offset_bottom = 211.0
+grow_horizontal = 2
+
+[node name="Shader" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_jlfgd")
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(1, 1, 1, 0)
