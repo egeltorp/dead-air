@@ -24,11 +24,13 @@ emission_energy_multiplier = 1.72
 [node name="StaticBody3D" type="StaticBody3D" parent="room" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="room/StaticBody3D" index="0"]
+visible = false
 shape = SubResource("ConcavePolygonShape3D_63jt4")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="bed" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bed/StaticBody3D" index="0"]
+visible = false
 shape = SubResource("ConcavePolygonShape3D_annv7")
 
 [node name="terminal" parent="." index="2"]
@@ -37,11 +39,13 @@ visible = false
 [node name="StaticBody3D" type="StaticBody3D" parent="floor" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D" index="0"]
+visible = false
 shape = SubResource("ConcavePolygonShape3D_8rwit")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ceiling" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ceiling/StaticBody3D" index="0"]
+visible = false
 shape = SubResource("ConcavePolygonShape3D_f852q")
 
 [node name="terminal_window" parent="." index="5"]
