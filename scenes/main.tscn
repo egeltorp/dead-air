@@ -94,8 +94,13 @@ size = Vector2(1.32, 2.13)
 
 [node name="ColorRect" type="ColorRect" parent="PSX"]
 material = SubResource("ShaderMaterial_jyhfs")
-offset_right = 480.0
-offset_bottom = 270.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 color = Color(1, 1, 1, 0)
 
 [node name="Debug" type="CanvasLayer" parent="."]
@@ -360,6 +365,51 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29575, 1.90735e-06, -11.975
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39055, 1.90735e-06, -18.2551)
 
 [node name="tree14" parent="Trees/trees4" instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0135, 1.90735e-06, -19.2117)
+
+[node name="trees5" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4275, -0.66221, -3.06975)
+
+[node name="tree" parent="Trees/trees5" instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.50769)
+
+[node name="tree2" parent="Trees/trees5" instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.60944, -0.9337, -12.5413)
+
+[node name="tree3" parent="Trees/trees5" instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.84393, 0, -10.5573)
+
+[node name="tree4" parent="Trees/trees5" instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.22193, -0.9337, -8.78988)
+
+[node name="tree5" parent="Trees/trees5" instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.116125, -0.745885, -13.8084)
+
+[node name="tree6" parent="Trees/trees5" instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.46852, 0, -15.8398)
+
+[node name="tree7" parent="Trees/trees5" instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.94162, -0.933699, -9.14703)
+
+[node name="tree8" parent="Trees/trees5" instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.44159, -0.745883, -13.5544)
+
+[node name="tree9" parent="Trees/trees5" instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.24361, 1.90735e-06, -18.5075)
+
+[node name="tree10" parent="Trees/trees5" instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.39273, 1.90735e-06, -14.0425)
+
+[node name="tree11" parent="Trees/trees5" instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.77453, -0.745883, -9.98301)
+
+[node name="tree12" parent="Trees/trees5" instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29575, 1.90735e-06, -11.9753)
+
+[node name="tree13" parent="Trees/trees5" instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39055, 1.90735e-06, -18.2551)
+
+[node name="tree14" parent="Trees/trees5" instance=ExtResource("13_trceg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0135, 1.90735e-06, -19.2117)
 
 [node name="BigDish" type="Node3D" parent="."]
