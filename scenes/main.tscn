@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=44 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://bjpnwraai4hg4" path="res://assets/textures/128x128_placeholders/Dirt/Dirt_03-128x128.png" id="2_jyhfs"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cvbpmgn8ot6vv" path="res://scripts/ceiling_light.gd" id="6_85g3d"]
 [ext_resource type="Texture2D" uid="uid://hbcp7mhotyaj" path="res://assets/textures/glass.png" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://cp2dby8pwk40q" path="res://assets/models/flag/flag.glb" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://b88blqdvbck60" path="res://assets/textures/Metal_06-128x128.png" id="7_pm3ni"]
 [ext_resource type="AudioStream" uid="uid://cgv1iibgpg1qc" path="res://audio/sfx/light-bulb-buzzing.wav" id="7_ya4ey"]
 [ext_resource type="AudioStream" uid="uid://dqg70q2b6sw0s" path="res://audio/sfx/lights-flicker.wav" id="8_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://bmkluc0jkr35n" path="res://scenes/terminal.tscn" id="8_tipki"]
@@ -22,6 +23,8 @@
 [ext_resource type="PackedScene" uid="uid://dusjoq2m7jy28" path="res://assets/models/posters.glb" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://xcb0eir3pdtw" path="res://assets/models/door.glb" id="18_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://d2b7iyvxylo6d" path="res://scenes/bed.tscn" id="22_jscy8"]
+[ext_resource type="PackedScene" uid="uid://uhkpmqldcmki" path="res://scenes/ViewportUI.tscn" id="24_og1vs"]
+[ext_resource type="Script" uid="uid://bfgljg1qakwa6" path="res://scripts/utils.gd" id="24_y6deb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 shader = ExtResource("5_tbgi4")
@@ -89,11 +92,32 @@ size = Vector2(1.65, 2.663)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tipki"]
 transparency = 1
-albedo_color = Color(0.27, 0.27, 0.27, 0.721569)
+albedo_color = Color(0.854764, 0.789273, 0.602858, 0.501961)
 albedo_texture = ExtResource("6_o6xl0")
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_o6xl0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6deb"]
+albedo_texture = ExtResource("7_pm3ni")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_og1vs"]
+top_radius = 0.03
+bottom_radius = 0.04
+height = 0.1
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_y6deb"]
+viewport_path = NodePath("Monitor/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_og1vs"]
+resource_local_to_scene = true
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = SubResource("ViewportTexture_y6deb")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y6deb"]
+size = Vector2(0.64, 0.48)
 
 [node name="Node3D" type="Node3D"]
 
@@ -136,13 +160,10 @@ shape = SubResource("WorldBoundaryShape3D_sgp6g")
 mesh = SubResource("PlaneMesh_o5qli")
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
-transform = Transform3D(0.77809, 0, -0.628153, 0, 1, 0, 0.628153, 0, 0.77809, -1.33951, 0, 0.4187)
+transform = Transform3D(0.944376, 0, 0.328867, 0, 1, 0, -0.328867, 0, 0.944376, 0.532241, 0, 1.04385)
 
 [node name="room" parent="." instance=ExtResource("4_jyhfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3263, 0)
-
-[node name="TerminalObject" parent="room" instance=ExtResource("8_tipki")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275077, 0)
 
 [node name="CeilingLight" type="OmniLight3D" parent="room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12317, 0)
@@ -206,6 +227,28 @@ transform = Transform3D(0.998135, 0, -0.0610485, 0, 1, 0, 0.0610485, 0, 0.998135
 
 [node name="cabinet3" parent="room/Decorations" instance=ExtResource("16_yc10j")]
 transform = Transform3D(0.997564, 0, 0.0697565, 0, 1, 0, -0.0697565, 0, 0.997564, -0.988165, -0.506403, -2.45744)
+
+[node name="bed2" parent="room/Decorations" instance=ExtResource("22_jscy8")]
+transform = Transform3D(-0.999848, 0, -0.0174525, 0, 1, 0, 0.0174525, 0, -0.999848, 0.795139, -0.875, 1.86499)
+
+[node name="Terminal" type="Node3D" parent="room"]
+
+[node name="terminal_model" parent="room/Terminal" instance=ExtResource("8_tipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275077, 0)
+
+[node name="Knobs" type="Node3D" parent="room"]
+
+[node name="L_Knob" type="MeshInstance3D" parent="room/Knobs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35651, -0.322958, -0.677441)
+material_override = SubResource("StandardMaterial3D_y6deb")
+mesh = SubResource("CylinderMesh_og1vs")
+skeleton = NodePath("../../Terminal")
+
+[node name="R_Knob" type="MeshInstance3D" parent="room/Knobs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35651, -0.322958, -0.281182)
+material_override = SubResource("StandardMaterial3D_y6deb")
+mesh = SubResource("CylinderMesh_og1vs")
+skeleton = NodePath("../../Terminal")
 
 [node name="Outside" type="Node3D" parent="."]
 
@@ -463,5 +506,22 @@ transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -10.3957
 [node name="proto_terrain2" parent="Outside" instance=ExtResource("4_tbgi4")]
 transform = Transform3D(-1.5, 0, 2.59808, 0, 3, 0, -2.59808, 0, -1.5, -10.3957, -3.29517, -9.51124)
 
-[node name="bed" parent="." instance=ExtResource("22_jscy8")]
-transform = Transform3D(-0.999848, 0, -0.0174525, 0, 1, 0, 0.0174525, 0, -0.999848, 0.795139, 0.4513, 1.86499)
+[node name="Monitor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3263, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Monitor"]
+transform = Transform3D(-4.33435e-08, -0.983131, -0.182905, 5.65934e-09, 0.182905, -0.983131, 1, -4.36474e-08, -2.36386e-09, 1.57093, -0.0473229, -0.476189)
+material_override = SubResource("StandardMaterial3D_og1vs")
+mesh = SubResource("PlaneMesh_y6deb")
+
+[node name="SubViewport" type="SubViewport" parent="Monitor"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(640, 480)
+render_target_update_mode = 4
+
+[node name="ViewportUI" parent="Monitor/SubViewport" instance=ExtResource("24_og1vs")]
+
+[node name="Utils" type="Node" parent="."]
+script = ExtResource("24_y6deb")
