@@ -11,7 +11,6 @@ func _process(delta):
 	queue_redraw()
 
 func _draw():
-	var rect = waveform_box.get_rect()
 	var width = waveform_box.size.x
 	var height = waveform_box.size.y
 	var mid = height * 0.5

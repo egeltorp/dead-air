@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=47 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://bjpnwraai4hg4" path="res://assets/textures/128x128_placeholders/Dirt/Dirt_03-128x128.png" id="2_jyhfs"]
@@ -24,7 +24,9 @@
 [ext_resource type="PackedScene" uid="uid://xcb0eir3pdtw" path="res://assets/models/door.glb" id="18_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://d2b7iyvxylo6d" path="res://scenes/bed.tscn" id="22_jscy8"]
 [ext_resource type="PackedScene" uid="uid://uhkpmqldcmki" path="res://scenes/ViewportUI.tscn" id="24_og1vs"]
+[ext_resource type="Script" uid="uid://cf1giqgnui74s" path="res://scenes/terminal.gd" id="24_vxglm"]
 [ext_resource type="Script" uid="uid://bfgljg1qakwa6" path="res://scripts/utils.gd" id="24_y6deb"]
+[ext_resource type="FontFile" uid="uid://ep4kqvu2c3tj" path="res://assets/fonts/SpecialElite-Regular.ttf" id="25_2wyq8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 shader = ExtResource("5_tbgi4")
@@ -100,6 +102,7 @@ texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6deb"]
 albedo_texture = ExtResource("7_pm3ni")
+texture_filter = 0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_og1vs"]
 top_radius = 0.03
@@ -107,7 +110,7 @@ bottom_radius = 0.04
 height = 0.1
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_y6deb"]
-viewport_path = NodePath("Monitor/SubViewport")
+viewport_path = NodePath("Terminal/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_og1vs"]
 resource_local_to_scene = true
@@ -118,6 +121,9 @@ albedo_texture = SubResource("ViewportTexture_y6deb")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_y6deb"]
 size = Vector2(0.64, 0.48)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_og1vs"]
+size = Vector3(0.830078, 1.71631, 1.21071)
 
 [node name="Node3D" type="Node3D"]
 
@@ -162,10 +168,10 @@ mesh = SubResource("PlaneMesh_o5qli")
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
 transform = Transform3D(0.944376, 0, 0.328867, 0, 1, 0, -0.328867, 0, 0.944376, 0.532241, 0, 1.04385)
 
-[node name="room" parent="." instance=ExtResource("4_jyhfs")]
+[node name="Room" parent="." instance=ExtResource("4_jyhfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3263, 0)
 
-[node name="CeilingLight" type="OmniLight3D" parent="room"]
+[node name="CeilingLight" type="OmniLight3D" parent="Room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12317, 0)
 light_color = Color(0.88, 0.77836, 0.3256, 1)
 light_energy = 0.39
@@ -174,77 +180,78 @@ omni_range = 4.267
 omni_shadow_mode = 0
 script = ExtResource("6_85g3d")
 
-[node name="Buzz" type="AudioStreamPlayer3D" parent="room/CeilingLight"]
+[node name="Buzz" type="AudioStreamPlayer3D" parent="Room/CeilingLight"]
 stream = ExtResource("7_ya4ey")
 volume_db = -44.685
 autoplay = true
 
-[node name="Flicker" type="AudioStreamPlayer3D" parent="room/CeilingLight"]
+[node name="Flicker" type="AudioStreamPlayer3D" parent="Room/CeilingLight"]
 stream = ExtResource("8_eb6dy")
 volume_db = -15.855
 
-[node name="LampShade" type="MeshInstance3D" parent="room/CeilingLight"]
+[node name="LampShade" type="MeshInstance3D" parent="Room/CeilingLight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144997, 0)
 material_override = SubResource("StandardMaterial3D_jbj1t")
 mesh = SubResource("CylinderMesh_muem4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="room/CeilingLight/LampShade"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/CeilingLight/LampShade"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00559807, -0.00164304)
 material_override = SubResource("StandardMaterial3D_muem4")
 mesh = SubResource("CylinderMesh_dp3eg")
 
-[node name="Decorations" type="Node3D" parent="room"]
+[node name="Decorations" type="Node3D" parent="Room"]
 
-[node name="rug" type="MeshInstance3D" parent="room/Decorations"]
+[node name="rug" type="MeshInstance3D" parent="Room/Decorations"]
 transform = Transform3D(0.980299, 0, -0.19752, 0, 1, 0, 0.19752, 0, 0.980299, -0.460344, -1.2763, -0.438204)
 material_override = SubResource("StandardMaterial3D_jkv2x")
 mesh = SubResource("PlaneMesh_jbj1t")
 skeleton = NodePath("../../..")
 
-[node name="flag" parent="room/Decorations" instance=ExtResource("6_tefeu")]
+[node name="flag" parent="Room/Decorations" instance=ExtResource("6_tefeu")]
 transform = Transform3D(-1, 0, 8.74228e-08, 1.78813e-09, 0.999791, 0.0204538, -8.74045e-08, 0.0204538, -0.999791, 2.01493, 0.728207, -0.160275)
 
-[node name="Window" type="MeshInstance3D" parent="room/Decorations"]
+[node name="Window" type="MeshInstance3D" parent="Room/Decorations"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.592934, -2.54875)
 material_override = SubResource("StandardMaterial3D_tipki")
 mesh = SubResource("PlaneMesh_o6xl0")
 skeleton = NodePath("../..")
 
-[node name="posters" parent="room/Decorations" instance=ExtResource("17_muem4")]
+[node name="posters" parent="Room/Decorations" instance=ExtResource("17_muem4")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.8013, 0.230844, 2.49969)
 
-[node name="posters2" parent="room/Decorations" instance=ExtResource("17_muem4")]
+[node name="posters2" parent="Room/Decorations" instance=ExtResource("17_muem4")]
 transform = Transform3D(0.00349064, 0, -0.999994, 0, 1, 0, 0.999994, 0, 0.00349064, 2.00173, 0.230844, -0.470264)
 
-[node name="door" parent="room/Decorations" instance=ExtResource("18_dp3eg")]
+[node name="door" parent="Room/Decorations" instance=ExtResource("18_dp3eg")]
 transform = Transform3D(-4.67712e-08, 0, 1.07, 0, 1.07, 0, -1.07, 0, -4.67712e-08, -2.13252, -0.146324, -1.43566)
 
-[node name="map" parent="room/Decorations" instance=ExtResource("15_0ld40")]
+[node name="map" parent="Room/Decorations" instance=ExtResource("15_0ld40")]
 transform = Transform3D(-2.77567e-08, 0, 0.635, 0, 0.635, 0, -0.635, 0, -2.77567e-08, -1.9724, 0.374846, 0.475712)
 
-[node name="cabinet4" parent="room/Decorations" instance=ExtResource("16_yc10j")]
+[node name="cabinet4" parent="Room/Decorations" instance=ExtResource("16_yc10j")]
 transform = Transform3D(0.998135, 0, -0.0610485, 0, 1, 0, 0.0610485, 0, 0.998135, -0.239788, -0.506403, -2.45744)
 
-[node name="cabinet3" parent="room/Decorations" instance=ExtResource("16_yc10j")]
+[node name="cabinet3" parent="Room/Decorations" instance=ExtResource("16_yc10j")]
 transform = Transform3D(0.997564, 0, 0.0697565, 0, 1, 0, -0.0697565, 0, 0.997564, -0.988165, -0.506403, -2.45744)
 
-[node name="bed2" parent="room/Decorations" instance=ExtResource("22_jscy8")]
+[node name="bed2" parent="Room/Decorations" instance=ExtResource("22_jscy8")]
 transform = Transform3D(-0.999848, 0, -0.0174525, 0, 1, 0, 0.0174525, 0, -0.999848, 0.795139, -0.875, 1.86499)
 
-[node name="Terminal" type="Node3D" parent="room"]
+[node name="Terminal" type="Node3D" parent="Room"]
 
-[node name="terminal_model" parent="room/Terminal" instance=ExtResource("8_tipki")]
+[node name="terminal_model" parent="Room/Terminal" instance=ExtResource("8_tipki")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275077, 0)
 
-[node name="Knobs" type="Node3D" parent="room"]
+[node name="Knobs" type="Node3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0250625, 0.0177842, 0)
 
-[node name="L_Knob" type="MeshInstance3D" parent="room/Knobs"]
+[node name="L_Knob" type="MeshInstance3D" parent="Room/Knobs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35651, -0.322958, -0.677441)
 material_override = SubResource("StandardMaterial3D_y6deb")
 mesh = SubResource("CylinderMesh_og1vs")
 skeleton = NodePath("../../Terminal")
 
-[node name="R_Knob" type="MeshInstance3D" parent="room/Knobs"]
+[node name="R_Knob" type="MeshInstance3D" parent="Room/Knobs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35651, -0.322958, -0.281182)
 material_override = SubResource("StandardMaterial3D_y6deb")
 mesh = SubResource("CylinderMesh_og1vs")
@@ -506,22 +513,47 @@ transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -10.3957
 [node name="proto_terrain2" parent="Outside" instance=ExtResource("4_tbgi4")]
 transform = Transform3D(-1.5, 0, 2.59808, 0, 3, 0, -2.59808, 0, -1.5, -10.3957, -3.29517, -9.51124)
 
-[node name="Monitor" type="Node3D" parent="."]
+[node name="Terminal" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3263, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Monitor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Terminal"]
 transform = Transform3D(-4.33435e-08, -0.983131, -0.182905, 5.65934e-09, 0.182905, -0.983131, 1, -4.36474e-08, -2.36386e-09, 1.57093, -0.0473229, -0.476189)
 material_override = SubResource("StandardMaterial3D_og1vs")
 mesh = SubResource("PlaneMesh_y6deb")
 
-[node name="SubViewport" type="SubViewport" parent="Monitor"]
+[node name="SubViewport" type="SubViewport" parent="Terminal"]
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(640, 480)
 render_target_update_mode = 4
 
-[node name="ViewportUI" parent="Monitor/SubViewport" instance=ExtResource("24_og1vs")]
+[node name="ViewportUI" parent="Terminal/SubViewport" instance=ExtResource("24_og1vs")]
+
+[node name="MonitorCamera3D" type="Camera3D" parent="Terminal"]
+transform = Transform3D(-4.14295e-08, 0.318877, -0.947796, 1.39385e-08, 0.947796, 0.318877, 1, -8.88178e-16, -4.37114e-08, 0.602918, 0.198871, -0.478556)
+fov = 41.3
+
+[node name="TerminalScript" type="StaticBody3D" parent="Terminal" groups=["terminal"]]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 1.5868, 0, -0.488137)
+script = ExtResource("24_vxglm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terminal/TerminalScript"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0849609, -0.358154, -0.11454)
+shape = SubResource("BoxShape3D_og1vs")
+
+[node name="Label" type="Label" parent="Terminal"]
+modulate = Color(0.804743, 0.804743, 0.804743, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("25_2wyq8")
+theme_override_font_sizes/font_size = 24
+text = "."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Utils" type="Node" parent="."]
 script = ExtResource("24_y6deb")

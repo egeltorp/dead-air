@@ -6,14 +6,48 @@ extends CharacterBody3D
 var gravity := -9.8 * 2
 var velocity_y := 0.0
 
+var using_terminal := false
+@onready var terminal = null
+
+@onready var player_camera := $Camera3D
+@onready var ray := $Camera3D/InteractionRay
+
+var inputs = ["move_left", "move_right", "move_forward", "move_backward", "jump", "interact"]
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+
 func _input(event):
+	if using_terminal:
+		return
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * mouse_sense)
-		$Camera3D.rotate_x(-event.relative.y * mouse_sense)
-		$Camera3D.rotation_degrees.x = clamp($Camera3D.rotation_degrees.x, -70, 89)
+		player_camera.rotate_x(-event.relative.y * mouse_sense)
+		player_camera.rotation_degrees.x = clamp(player_camera.rotation_degrees.x, -70, 89)
+
+
+func _process(delta: float) -> void:
+	if using_terminal:
+		print("using terminal")
+		if Input.is_action_just_pressed("escape"):
+			exit_terminal()
+		for input in inputs:
+			if Input.is_action_just_pressed(input):
+				exit_terminal()
+		return
+	
+	ray.force_raycast_update()
+	var hit = ray.get_collider()
+	
+	if hit and hit.is_in_group("terminal"):
+		hit.show_prompt()
+		terminal = hit
+		if Input.is_action_just_pressed("interact"):
+			enter_terminal(hit)
+	else:
+		if terminal:
+			terminal.hide_prompt()
 
 func _physics_process(delta):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -29,3 +63,17 @@ func _physics_process(delta):
 	
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity_y = jump_power
+
+func enter_terminal(hit):
+	using_terminal = true
+	player_camera.current = false
+	terminal.terminal_camera.current = true
+	set_physics_process(false)
+	terminal.hide_prompt()
+
+func exit_terminal():
+	using_terminal = false
+	player_camera.current = true
+	terminal.terminal_camera.current = false
+	set_physics_process(true)
+	terminal = null
