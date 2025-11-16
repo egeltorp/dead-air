@@ -6,7 +6,6 @@ extends CharacterBody3D
 var gravity := -9.8 * 2
 var velocity_y := 0.0
 
-var using_terminal := false
 @onready var terminal = null
 
 @onready var player_camera := $Camera3D
@@ -22,7 +21,7 @@ func _ready():
 
 
 func _input(event):
-	if using_terminal:
+	if GameState.using_terminal:
 		return
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * mouse_sense)
@@ -31,7 +30,7 @@ func _input(event):
 
 
 func _process(delta: float) -> void:
-	if using_terminal:
+	if GameState.using_terminal:
 		regular_cursor.visible = false
 		if Input.is_action_just_pressed("escape"):
 			exit_terminal()
@@ -68,14 +67,14 @@ func _physics_process(delta):
 		velocity_y = jump_power
 
 func enter_terminal(hit):
-	using_terminal = true
+	GameState.using_terminal = true
 	player_camera.current = false
 	terminal.terminal_camera.current = true
 	set_physics_process(false)
 	hide_interact()
 
 func exit_terminal():
-	using_terminal = false
+	GameState.using_terminal = false
 	player_camera.current = true
 	terminal.terminal_camera.current = false
 	set_physics_process(true)

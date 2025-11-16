@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1wxgxmqpcc5o"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2wyq8"]
+viewport_path = NodePath("CCTV/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxglm"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_color = Color(0.720467, 0.720468, 0.720467, 1)
+albedo_texture = SubResource("ViewportTexture_2wyq8")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2wyq8"]
+size = Vector2(0.64, 0.48)
+
+[node name="CCTV" type="Node3D"]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.721893, -0.599293, 0.346002, -3.78552e-08, -0.5, -0.866025, 0.692005, -0.625178, 0.360947, 1.66003, 2.15597, 1.94682)
+material_override = SubResource("StandardMaterial3D_vxglm")
+mesh = SubResource("PlaneMesh_2wyq8")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(128, 128)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(0.344909, 0.273678, -0.897852, 0.042046, 0.951085, 0.306056, 0.937694, -0.143313, 0.31653, -8.57867, 2.29549, 1.06615)
+fov = 65.7
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewport/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 2.98023e-08, 2.23517e-08, 1, -1.02697, -0.384004, 1.2919)
+light_color = Color(0.60933, 0.60933, 0.60933, 1)
+light_energy = 5.267
+light_specular = 0.0
+light_cull_mask = 4294966276
+spot_range = 45.9323

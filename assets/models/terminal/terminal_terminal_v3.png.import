@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://c8n6o358eosn6"
+path.s3tc="res://.godot/imported/terminal_terminal_v3.png-f094971fb33b8fc40cfc149c99676a1b.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "8f5697b82d0e46f25c276224ee45779a"
+}
+
+[deps]
+
+source_file="res://assets/models/terminal/terminal_terminal_v3.png"
+dest_files=["res://.godot/imported/terminal_terminal_v3.png-f094971fb33b8fc40cfc149c99676a1b.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

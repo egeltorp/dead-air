@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=49 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://bjpnwraai4hg4" path="res://assets/textures/128x128_placeholders/Dirt/Dirt_03-128x128.png" id="2_jyhfs"]
@@ -127,24 +127,13 @@ shading_mode = 0
 disable_ambient_light = true
 disable_fog = true
 albedo_texture = SubResource("ViewportTexture_y6deb")
+texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_y6deb"]
 size = Vector2(0.64, 0.48)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_og1vs"]
 size = Vector3(0.830078, 1.71631, 1.21071)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_2wyq8"]
-viewport_path = NodePath("CCTV/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxglm"]
-resource_local_to_scene = true
-shading_mode = 0
-albedo_color = Color(0.720467, 0.720468, 0.720467, 1)
-albedo_texture = SubResource("ViewportTexture_2wyq8")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_2wyq8"]
-size = Vector2(0.64, 0.48)
 
 [node name="Node3D" type="Node3D"]
 
@@ -195,7 +184,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3263, 0)
 [node name="CeilingLight" type="OmniLight3D" parent="Room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12317, 0)
 light_color = Color(0.88, 0.77836, 0.3256, 1)
-light_energy = 0.39
+light_energy = 0.429
 light_specular = 0.0
 omni_range = 4.267
 omni_shadow_mode = 0
@@ -264,7 +253,7 @@ transform = Transform3D(-0.999848, 0, -0.0174525, 0, 1, 0, 0.0174525, 0, -0.9998
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275077, 0)
 
 [node name="Knobs" type="Node3D" parent="Room"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0250625, 0.0177842, -0.0401956)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0250625, 0.0177842, -0.0449966)
 
 [node name="L_Knob" type="MeshInstance3D" parent="Room/Knobs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35651, -0.322958, -0.677441)
@@ -544,7 +533,7 @@ transform = Transform3D(-1.5, 0, 2.59808, 0, 3, 0, -2.59808, 0, -1.5, -10.3957, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3263, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Terminal"]
-transform = Transform3D(-4.28344e-08, -0.980258, -0.197726, -8.71165e-09, 0.197726, -0.980258, 1, -4.02663e-08, -1.70091e-08, 1.59044, -0.0473229, -0.516385)
+transform = Transform3D(-4.28344e-08, -0.980258, -0.197726, -8.71165e-09, 0.197726, -0.980258, 1, -4.02663e-08, -1.70091e-08, 1.57487, -0.0333914, -0.520439)
 material_override = SubResource("StandardMaterial3D_og1vs")
 mesh = SubResource("PlaneMesh_y6deb")
 
@@ -558,7 +547,7 @@ render_target_update_mode = 4
 [node name="ViewportUI" parent="Terminal/SubViewport" instance=ExtResource("24_og1vs")]
 
 [node name="MonitorCamera3D" type="Camera3D" parent="Terminal"]
-transform = Transform3D(-4.27635e-08, 0.207127, -0.978314, 9.05373e-09, 0.978314, 0.207127, 1, 6.03961e-14, -4.37114e-08, 0.602918, 0.109667, -0.518752)
+transform = Transform3D(-4.27635e-08, 0.207127, -0.978314, 9.05373e-09, 0.978314, 0.207127, 1, 6.03961e-14, -4.37114e-08, 0.602918, 0.114964, -0.523553)
 fov = 41.3
 
 [node name="TerminalInteract" type="StaticBody3D" parent="Terminal" groups=["terminal"]]
@@ -573,24 +562,3 @@ shape = SubResource("BoxShape3D_og1vs")
 
 [node name="Utils" type="Node" parent="."]
 script = ExtResource("24_y6deb")
-
-[node name="CCTV" type="Node3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CCTV"]
-transform = Transform3D(-0.721893, -0.599293, 0.346002, -3.78552e-08, -0.5, -0.866025, 0.692005, -0.625178, 0.360947, 1.66003, 2.15597, 1.94682)
-material_override = SubResource("StandardMaterial3D_vxglm")
-mesh = SubResource("PlaneMesh_2wyq8")
-
-[node name="SubViewport" type="SubViewport" parent="CCTV"]
-
-[node name="Camera3D" type="Camera3D" parent="CCTV/SubViewport"]
-transform = Transform3D(0.344909, 0.273678, -0.897852, 0.042046, 0.951085, 0.306056, 0.937694, -0.143313, 0.31653, -8.57867, 2.29549, 1.06615)
-fov = 65.7
-
-[node name="SpotLight3D" type="SpotLight3D" parent="CCTV/SubViewport/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 2.98023e-08, 2.23517e-08, 1, -1.02697, -0.384004, 1.2919)
-light_color = Color(0.60933, 0.60933, 0.60933, 1)
-light_energy = 5.267
-light_specular = 0.0
-light_cull_mask = 4294966276
-spot_range = 45.9323
