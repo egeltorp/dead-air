@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyuayf1el6mjg"
-path.s3tc="res://.godot/imported/Dirt_04-128x128.png-5aed61a96b463a7d4c2172f859ba13af.s3tc.ctex"
+uid="uid://ojpt12rj1sye"
+path.s3tc="res://.godot/imported/terminal_terminal_tex.png-878b32aeb9e542a907272068db236f3e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "0d4d2d9d33711a13271674f46a81dd72"
+}
 
 [deps]
 
-source_file="res://assets/textures/128x128_placeholders/Dirt/Dirt_04-128x128.png"
-dest_files=["res://.godot/imported/Dirt_04-128x128.png-5aed61a96b463a7d4c2172f859ba13af.s3tc.ctex"]
+source_file="res://assets/models/terminal/terminal_terminal_tex.png"
+dest_files=["res://.godot/imported/terminal_terminal_tex.png-878b32aeb9e542a907272068db236f3e.s3tc.ctex"]
 
 [params]
 

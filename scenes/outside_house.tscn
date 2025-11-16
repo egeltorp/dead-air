@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ktkwiqbgl2pg"]
+
+[ext_resource type="PackedScene" uid="uid://uu505qin4htw" path="res://assets/models/outside/outside.glb" id="1_itohb"]
+
+[node name="outside" instance=ExtResource("1_itohb")]
+
+[node name="Cube" parent="." index="0"]
+layers = 4
+
+[node name="Cube_001" parent="." index="1"]
+layers = 4
+
+[node name="Plane" parent="." index="2"]
+layers = 4

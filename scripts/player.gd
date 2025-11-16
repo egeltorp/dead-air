@@ -14,7 +14,7 @@ var using_terminal := false
 @onready var interact_cursor = $InteractCursor
 @onready var regular_cursor = $RegularCursor
 
-var inputs = ["move_left", "move_right", "move_forward", "move_backward", "jump", "interact"]
+var exit_inputs = ["move_left", "move_right", "move_forward", "move_backward", "interact"]
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 		regular_cursor.visible = false
 		if Input.is_action_just_pressed("escape"):
 			exit_terminal()
-		for input in inputs:
+		for input in exit_inputs:
 			if Input.is_action_just_pressed(input):
 				exit_terminal()
 		return
@@ -82,6 +82,7 @@ func exit_terminal():
 	terminal = null
 	
 func show_interact():
+	regular_cursor.visible = false
 	interact_cursor.show()
 	
 func hide_interact():
