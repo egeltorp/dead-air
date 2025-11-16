@@ -11,11 +11,14 @@ var using_terminal := false
 
 @onready var player_camera := $Camera3D
 @onready var ray := $Camera3D/InteractionRay
+@onready var interact_cursor = $InteractCursor
+@onready var regular_cursor = $RegularCursor
 
 var inputs = ["move_left", "move_right", "move_forward", "move_backward", "jump", "interact"]
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	interact_cursor.visible = false
 
 
 func _input(event):
@@ -29,7 +32,7 @@ func _input(event):
 
 func _process(delta: float) -> void:
 	if using_terminal:
-		print("using terminal")
+		regular_cursor.visible = false
 		if Input.is_action_just_pressed("escape"):
 			exit_terminal()
 		for input in inputs:
@@ -41,13 +44,13 @@ func _process(delta: float) -> void:
 	var hit = ray.get_collider()
 	
 	if hit and hit.is_in_group("terminal"):
-		hit.show_prompt()
+		show_interact()
 		terminal = hit
 		if Input.is_action_just_pressed("interact"):
 			enter_terminal(hit)
 	else:
 		if terminal:
-			terminal.hide_prompt()
+			hide_interact()
 
 func _physics_process(delta):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -69,7 +72,7 @@ func enter_terminal(hit):
 	player_camera.current = false
 	terminal.terminal_camera.current = true
 	set_physics_process(false)
-	terminal.hide_prompt()
+	hide_interact()
 
 func exit_terminal():
 	using_terminal = false
@@ -77,3 +80,10 @@ func exit_terminal():
 	terminal.terminal_camera.current = false
 	set_physics_process(true)
 	terminal = null
+	
+func show_interact():
+	interact_cursor.show()
+	
+func hide_interact():
+	regular_cursor.visible = true
+	interact_cursor.visible = false

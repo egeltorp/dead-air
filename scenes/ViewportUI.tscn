@@ -1,11 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://uhkpmqldcmki"]
+[gd_scene load_steps=3 format=3 uid="uid://uhkpmqldcmki"]
 
 [ext_resource type="FontFile" uid="uid://7gjok8h2jbx8" path="res://assets/fonts/monofonto rg.otf" id="1_5x2jv"]
-[ext_resource type="Shader" uid="uid://cnny2vj015j05" path="res://shaders/ViewportUI.gdshader" id="1_jlfgd"]
 [ext_resource type="Script" uid="uid://c1v56uxq5giju" path="res://scripts/waveform_drawer.gd" id="1_mcjyk"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jlfgd"]
-shader = ExtResource("1_jlfgd")
 
 [node name="ViewportUI" type="Control"]
 layout_mode = 3
@@ -102,7 +98,6 @@ offset_bottom = 211.0
 grow_horizontal = 2
 
 [node name="Shader" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_jlfgd")
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 480.0

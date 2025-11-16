@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=46 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://bjpnwraai4hg4" path="res://assets/textures/128x128_placeholders/Dirt/Dirt_03-128x128.png" id="2_jyhfs"]
@@ -26,7 +26,6 @@
 [ext_resource type="PackedScene" uid="uid://uhkpmqldcmki" path="res://scenes/ViewportUI.tscn" id="24_og1vs"]
 [ext_resource type="Script" uid="uid://cf1giqgnui74s" path="res://scenes/terminal.gd" id="24_vxglm"]
 [ext_resource type="Script" uid="uid://bfgljg1qakwa6" path="res://scripts/utils.gd" id="24_y6deb"]
-[ext_resource type="FontFile" uid="uid://ep4kqvu2c3tj" path="res://assets/fonts/SpecialElite-Regular.ttf" id="25_2wyq8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 shader = ExtResource("5_tbgi4")
@@ -517,7 +516,7 @@ transform = Transform3D(-1.5, 0, 2.59808, 0, 3, 0, -2.59808, 0, -1.5, -10.3957, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3263, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Terminal"]
-transform = Transform3D(-4.33435e-08, -0.983131, -0.182905, 5.65934e-09, 0.182905, -0.983131, 1, -4.36474e-08, -2.36386e-09, 1.57093, -0.0473229, -0.476189)
+transform = Transform3D(-4.35763e-08, -0.948904, -0.315566, -3.43336e-09, 0.315566, -0.948904, 1, -4.02663e-08, -1.70091e-08, 1.57093, -0.0473229, -0.476189)
 material_override = SubResource("StandardMaterial3D_og1vs")
 mesh = SubResource("PlaneMesh_y6deb")
 
@@ -534,26 +533,15 @@ render_target_update_mode = 4
 transform = Transform3D(-4.14295e-08, 0.318877, -0.947796, 1.39385e-08, 0.947796, 0.318877, 1, -8.88178e-16, -4.37114e-08, 0.602918, 0.198871, -0.478556)
 fov = 41.3
 
-[node name="TerminalScript" type="StaticBody3D" parent="Terminal" groups=["terminal"]]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 1.5868, 0, -0.488137)
+[node name="TerminalInteract" type="StaticBody3D" parent="Terminal" groups=["terminal"]]
+transform = Transform3D(0.689351, 0.295456, 0, -0.295456, 0.689351, 0, 0, 0, 0.75, 1.5868, 0, -0.488137)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("24_vxglm")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terminal/TerminalScript"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terminal/TerminalInteract"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0849609, -0.358154, -0.11454)
 shape = SubResource("BoxShape3D_og1vs")
-
-[node name="Label" type="Label" parent="Terminal"]
-modulate = Color(0.804743, 0.804743, 0.804743, 1)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("25_2wyq8")
-theme_override_font_sizes/font_size = 24
-text = "."
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Utils" type="Node" parent="."]
 script = ExtResource("24_y6deb")
