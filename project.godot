@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 
 GameState="*res://game_state.gd"
 WaveformManager="*res://waveform_manager.gd"
+GameManager="*res://game_manager.gd"
 
 [display]
 
@@ -33,6 +34,7 @@ window/stretch/mode="viewport"
 [editor]
 
 movie_writer/movie_file="C:/Users/buffe/Desktop/movie.avi"
+movie_writer/disable_vsync=true
 
 [input]
 

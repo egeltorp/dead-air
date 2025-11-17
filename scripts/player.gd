@@ -13,12 +13,13 @@ var velocity_y := 0.0
 @onready var interact_cursor = $InteractCursor
 @onready var regular_cursor = $RegularCursor
 
+var current_interactable: Interactable = null
+
 var exit_inputs = ["interact"]
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	interact_cursor.visible = false
-	WaveformManager.start_incoming(12.0, 33.0)
 
 
 func _input(event):
@@ -28,6 +29,8 @@ func _input(event):
 		rotate_y(-event.relative.x * mouse_sense)
 		player_camera.rotate_x(-event.relative.y * mouse_sense)
 		player_camera.rotation_degrees.x = clamp(player_camera.rotation_degrees.x, -70, 89)
+	if event.is_action_pressed("interact") and current_interactable:
+		current_interactable.interact(self)
 
 
 func _process(delta: float) -> void:
@@ -65,6 +68,16 @@ func _physics_process(delta):
 	velocity_y += gravity * delta
 	velocity.y = velocity_y
 	
+	if ray.is_colliding():
+		var obj = ray.get_collider()
+		if obj is Interactable:
+			current_interactable = obj
+			show_interact()
+		else:
+			clear_interactable()
+	else:
+		clear_interactable()
+	
 	move_and_slide()
 	
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
@@ -86,8 +99,12 @@ func exit_terminal():
 	
 func show_interact():
 	regular_cursor.visible = false
-	interact_cursor.show()
+	interact_cursor.visible = true
 	
 func hide_interact():
 	regular_cursor.visible = true
 	interact_cursor.visible = false
+	
+func clear_interactable():
+	current_interactable = null
+	hide_interact()

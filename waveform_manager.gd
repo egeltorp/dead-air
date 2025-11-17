@@ -71,5 +71,4 @@ func _check_match():
 	if abs(player_freq - incoming_freq) <= freq_tolerance \
 	and abs(player_amp - incoming_amp) <= amp_tolerance:
 		emit_signal("solved")
-		await get_tree().create_timer(waitTime).timeout
 		standby()
