@@ -17,8 +17,8 @@ var mode_freq := true
 
 var is_standby := true
 
-@export var freq_tolerance := 1.0
-@export var amp_tolerance := 2.0
+@export var freq_tolerance := 2
+@export var amp_tolerance := 2
 
 
 func standby():
@@ -44,6 +44,9 @@ func update_player_tuning(delta):
 		return
 	
 	var change_speed = 10
+	
+	print(str(player_freq))
+	print(str(player_amp))
 
 	if mode_freq:
 		if Input.is_action_pressed("tune_up"):
@@ -56,8 +59,8 @@ func update_player_tuning(delta):
 		if Input.is_action_pressed("tune_down"):
 			player_amp -= 20 * delta
 
-	player_freq = clamp(player_freq, 0.1, 20.0)
-	player_amp = clamp(player_amp, 0.0, 120.0)
+	player_freq = clamp(player_freq, 2, 20.0)
+	player_amp = clamp(player_amp, 0.0, 49.0)
 
 	_check_match()
 

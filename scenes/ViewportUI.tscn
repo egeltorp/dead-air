@@ -162,6 +162,12 @@ theme_override_font_sizes/font_size = 28
 text = "[A/D] AMP/FREQ: DECREASE/INCREASE
 [ESCAPE]: EXIT TERMINAL"
 
+[node name="Black" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
 [node name="Solved" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -213,4 +219,4 @@ script = ExtResource("7_eqqrq")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SFX/SignalAlert"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19384, 0, 0)
 stream = ExtResource("7_ct5pu")
-volume_db = -15.284
+volume_db = -19.608

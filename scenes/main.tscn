@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=55 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://bjpnwraai4hg4" path="res://assets/textures/128x128_placeholders/Dirt/Dirt_03-128x128.png" id="2_jyhfs"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" uid="uid://cf1giqgnui74s" path="res://scripts/terminal.gd" id="24_vxglm"]
 [ext_resource type="Script" uid="uid://bfgljg1qakwa6" path="res://scripts/utils.gd" id="24_y6deb"]
 [ext_resource type="PackedScene" uid="uid://crvhlmt5nbnyx" path="res://scenes/speaker.tscn" id="27_2f3dj"]
+[ext_resource type="Script" uid="uid://canjvk20rrfij" path="res://scenes/speaker_lights.gd" id="30_fv21b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 shader = ExtResource("5_tbgi4")
@@ -139,6 +140,15 @@ size = Vector2(0.64, 0.48)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_og1vs"]
 size = Vector3(0.830078, 1.71631, 1.21071)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fv21b"]
+transparency = 1
+albedo_color = Color(0.517647, 0.517647, 0.517647, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tel4y"]
+top_radius = 0.01
+bottom_radius = 0.01
+height = 0.01
 
 [node name="Node3D" type="Node3D"]
 
@@ -280,6 +290,15 @@ script = ExtResource("19_yq6so")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/BedInteract"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.869366, -0.519451, 1.91406)
 shape = SubResource("BoxShape3D_2f3dj")
+
+[node name="ColorRect" type="ColorRect" parent="Room/BedInteract"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Outside" type="Node3D" parent="."]
 
@@ -582,3 +601,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9254, 1.78606, -0.913907)
 
 [node name="Mesh" parent="Speaker" instance=ExtResource("27_2f3dj")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Lights" type="Node3D" parent="Speaker"]
+script = ExtResource("30_fv21b")
+
+[node name="red_light" type="OmniLight3D" parent="Speaker/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.213714, 0.181885, 0)
+light_color = Color(1, 0, 0, 1)
+light_energy = 0.086
+light_specular = 0.0
+omni_range = 0.875
+
+[node name="green_light" type="OmniLight3D" parent="Speaker/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.213714, 0.181885, 0)
+visible = false
+light_color = Color(0.24522, 0.635121, 3.85046e-07, 1)
+light_energy = 0.086
+light_specular = 0.0
+omni_range = 0.875
+
+[node name="Lamp" type="MeshInstance3D" parent="Speaker/Lights"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.20495, 0.181101, 0)
+material_override = SubResource("StandardMaterial3D_fv21b")
+mesh = SubResource("CylinderMesh_tel4y")

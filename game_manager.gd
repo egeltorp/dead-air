@@ -3,6 +3,7 @@ extends Node
 signal day_started(day)
 signal day_completed(day)
 signal all_days_completed()
+signal sound_over()
 
 var day := 1
 var signals_solved := 0
@@ -56,15 +57,15 @@ func _run_signal_sequence():
 		_play_solved_sound(i)
 		
 		# brief delay before next incoming signal
-		await get_tree().create_timer(3.0).timeout
+		await get_tree().create_timer(20).timeout
 	
 	running = false
 	end_day()
 
 
 func _send_incoming_signal(index: int):
-	var freq = randf_range(1.0, 8.0)
-	var amp = randf_range(20.0, 80.0)
+	var freq = randf_range(2, 20)
+	var amp = randf_range(20.0, 49)
 	
 	print("INCOMING SIGNAL #", index+1, " (Day ", day, ") Freq:", freq, " Amp:", amp)
 	
@@ -73,7 +74,6 @@ func _send_incoming_signal(index: int):
 
 func _wait_for_signal_solve() -> void:
 	while true:
-		print(str(signals_solved))
 		if signals_solved > 0:
 			signals_solved -= 1
 			return
@@ -90,6 +90,7 @@ func _play_solved_sound(index: int):
 	print("Playing solved sound: ", audio_path)
 	
 	await p.finished
+	emit_signal("sound_over")
 
 
 func _on_signal_solved():

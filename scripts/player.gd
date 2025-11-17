@@ -6,6 +6,7 @@ extends CharacterBody3D
 var gravity := -9.8 * 2
 var velocity_y := 0.0
 
+
 @onready var terminal = null
 
 @onready var player_camera := $Camera3D
@@ -20,6 +21,8 @@ var exit_inputs = ["interact"]
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	interact_cursor.visible = false
+	GameState.start_transform = global_transform
+	GameState.start_camera_transform = player_camera.global_transform
 
 
 func _input(event):
@@ -55,7 +58,7 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("interact"):
 			enter_terminal(hit)
 	else:
-		if terminal:
+		if GameState.using_terminal:
 			hide_interact()
 
 func _physics_process(delta):
@@ -108,3 +111,6 @@ func hide_interact():
 func clear_interactable():
 	current_interactable = null
 	hide_interact()
+	
+func sleep():
+	set_physics_process(false)
