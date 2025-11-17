@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://b722fwj5bubuv"]
+
+[ext_resource type="FontFile" uid="uid://ep4kqvu2c3tj" path="res://assets/fonts/SpecialElite-Regular.ttf" id="1_53kkj"]
+[ext_resource type="Script" uid="uid://dvdgtxmk30o2p" path="res://scripts/day_ui.gd" id="1_im7yn"]
+
+[sub_resource type="Theme" id="Theme_im7yn"]
+default_font = ExtResource("1_53kkj")
+default_font_size = 16
+
+[node name="DayUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_im7yn")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 157.0
+offset_right = 640.0
+offset_bottom = 212.0
+theme_override_fonts/font = ExtResource("1_53kkj")
+theme_override_font_sizes/font_size = 35
+text = "Siberia, 1976"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 27.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_im7yn")
+theme_override_font_sizes/font_size = 27
+text = "Day 1"
+horizontal_alignment = 1
+vertical_alignment = 1

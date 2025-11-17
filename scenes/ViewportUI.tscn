@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://c1coatknt5sho" path="res://audio/sfx/solved.wav" id="5_lldd8"]
 [ext_resource type="AudioStream" uid="uid://kyn6vgsu46q1" path="res://audio/sfx/switch_mode.wav" id="6_s4nbx"]
 [ext_resource type="AudioStream" uid="uid://dekyiha0tw0s4" path="res://audio/sfx/Blip5.wav" id="7_ct5pu"]
-[ext_resource type="Script" uid="uid://ryy5bg5bdgcv" path="res://scenes/signal_alert.gd" id="7_eqqrq"]
+[ext_resource type="Script" uid="uid://ryy5bg5bdgcv" path="res://scripts/signal_alert.gd" id="7_eqqrq"]
 
 [node name="ViewportUI" type="Control"]
 layout_mode = 3
@@ -203,7 +203,7 @@ color = Color(1, 1, 1, 0)
 
 [node name="Solved" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("5_lldd8")
-volume_db = 11.244
+volume_db = -5.621
 
 [node name="SwitchMode" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("6_s4nbx")

@@ -44,9 +44,6 @@ func update_player_tuning(delta):
 		return
 	
 	var change_speed = 10
-	
-	print(str(player_freq))
-	print(str(player_amp))
 
 	if mode_freq:
 		if Input.is_action_pressed("tune_up"):

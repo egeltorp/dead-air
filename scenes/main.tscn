@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=61 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://bjpnwraai4hg4" path="res://assets/textures/128x128_placeholders/Dirt/Dirt_03-128x128.png" id="2_jyhfs"]
@@ -21,15 +21,20 @@
 [ext_resource type="PackedScene" uid="uid://g5mnt8gcvdu2" path="res://scenes/cabinet.tscn" id="16_yc10j"]
 [ext_resource type="PackedScene" uid="uid://dusjoq2m7jy28" path="res://assets/models/posters.glb" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://xcb0eir3pdtw" path="res://assets/models/door.glb" id="18_dp3eg"]
+[ext_resource type="Script" uid="uid://cchs4nadhsfgp" path="res://scripts/knobs.gd" id="18_tel4y"]
 [ext_resource type="PackedScene" uid="uid://ktkwiqbgl2pg" path="res://scenes/outside_house.tscn" id="19_2wyq8"]
-[ext_resource type="Script" uid="uid://wii1tpl2acee" path="res://scenes/bed_interactable.gd" id="19_yq6so"]
+[ext_resource type="Script" uid="uid://wii1tpl2acee" path="res://scripts/bed_interactable.gd" id="19_yq6so"]
 [ext_resource type="Texture2D" uid="uid://dyuayf1el6mjg" path="res://assets/textures/128x128_placeholders/Dirt/Dirt_04-128x128.png" id="20_vxglm"]
+[ext_resource type="PackedScene" uid="uid://d08ihylmki4vj" path="res://scenes/radio.tscn" id="21_qkpxi"]
+[ext_resource type="PackedScene" uid="uid://c1hvhc6yfqgyo" path="res://assets/models/pipes.glb" id="22_j8jky"]
 [ext_resource type="PackedScene" uid="uid://d2b7iyvxylo6d" path="res://scenes/bed.tscn" id="22_jscy8"]
 [ext_resource type="PackedScene" uid="uid://uhkpmqldcmki" path="res://scenes/ViewportUI.tscn" id="24_og1vs"]
 [ext_resource type="Script" uid="uid://cf1giqgnui74s" path="res://scripts/terminal.gd" id="24_vxglm"]
 [ext_resource type="Script" uid="uid://bfgljg1qakwa6" path="res://scripts/utils.gd" id="24_y6deb"]
 [ext_resource type="PackedScene" uid="uid://crvhlmt5nbnyx" path="res://scenes/speaker.tscn" id="27_2f3dj"]
-[ext_resource type="Script" uid="uid://canjvk20rrfij" path="res://scenes/speaker_lights.gd" id="30_fv21b"]
+[ext_resource type="Script" uid="uid://canjvk20rrfij" path="res://scripts/speaker_lights.gd" id="30_fv21b"]
+[ext_resource type="Script" uid="uid://na3o4ejqoeqy" path="res://scripts/speaker_interactable.gd" id="32_dgi5k"]
+[ext_resource type="PackedScene" uid="uid://b722fwj5bubuv" path="res://scenes/DayUI.tscn" id="33_5q0nq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 shader = ExtResource("5_tbgi4")
@@ -139,7 +144,10 @@ texture_filter = 0
 size = Vector2(0.64, 0.48)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_og1vs"]
-size = Vector3(0.830078, 1.71631, 1.21071)
+size = Vector3(0.830078, 1.33948, 1.21071)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5q0nq"]
+size = Vector3(1.02881, 0.473694, 0.545532)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fv21b"]
 transparency = 1
@@ -269,6 +277,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000570774, 0.275077, 0.001
 
 [node name="Knobs" type="Node3D" parent="Room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0250625, 0.0177842, -0.0449966)
+script = ExtResource("18_tel4y")
 
 [node name="L_Knob" type="MeshInstance3D" parent="Room/Knobs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35651, -0.322958, -0.677441)
@@ -299,6 +308,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="radio" parent="Room" instance=ExtResource("21_qkpxi")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -1.14617, 0.319748, -2.25926)
+
+[node name="pipes" parent="Room" instance=ExtResource("22_j8jky")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.49213, 1.11563, -2.76269)
 
 [node name="Outside" type="Node3D" parent="."]
 
@@ -425,7 +440,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.116125, -0.745885, -13.8084
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.46852, 0, -15.8398)
 
 [node name="tree7" parent="Outside/Trees/trees3" instance=ExtResource("13_trceg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.94162, -0.933699, -9.14703)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.46279, -0.933699, -8.60778)
 
 [node name="tree8" parent="Outside/Trees/trees3" instance=ExtResource("13_trceg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.44159, -0.745883, -13.5544)
@@ -590,7 +605,7 @@ collision_mask = 2
 script = ExtResource("24_vxglm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Terminal/TerminalInteract"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0849609, -0.358154, -0.11454)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0849609, -0.54657, -0.11454)
 shape = SubResource("BoxShape3D_og1vs")
 
 [node name="Utils" type="Node" parent="."]
@@ -601,6 +616,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9254, 1.78606, -0.913907)
 
 [node name="Mesh" parent="Speaker" instance=ExtResource("27_2f3dj")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="ToggleSpeaker" type="StaticBody3D" parent="Speaker/Mesh"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("32_dgi5k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Speaker/Mesh/ToggleSpeaker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0144045, 0.0142517, -0.0166625)
+shape = SubResource("BoxShape3D_5q0nq")
 
 [node name="Lights" type="Node3D" parent="Speaker"]
 script = ExtResource("30_fv21b")
@@ -624,3 +648,5 @@ omni_range = 0.875
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.20495, 0.181101, 0)
 material_override = SubResource("StandardMaterial3D_fv21b")
 mesh = SubResource("CylinderMesh_tel4y")
+
+[node name="DayUI" parent="." instance=ExtResource("33_5q0nq")]
