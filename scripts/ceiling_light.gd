@@ -19,6 +19,9 @@ func _start_flicker_loop() -> void:
 
 func _flicker() -> void:
 	$Flicker.play()
+	if GameManager.day == 3:
+		base_energy *= 0.75
+	
 	var pulses := randi_range(2, 5)
 	for i in range(pulses):
 		var drop := randf() * flicker_strength

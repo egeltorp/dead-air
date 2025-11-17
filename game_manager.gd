@@ -18,6 +18,8 @@ var player_slept_today := false
 ]
 @onready var solve_sounds_2 := [
 	"res://audio/signals/day2_signal1.wav",
+	"res://audio/signals/day2_signal2.wav",
+	"res://audio/signals/static.wav",
 ]
 
 @onready var day_sounds := [solve_sounds_1, solve_sounds_2]
@@ -63,7 +65,9 @@ func _run_signal_sequence():
 		_play_solved_sound(i)
 		
 		# brief delay before next incoming signal
-		await get_tree().create_timer(20).timeout
+		print("Starting TIMER 30 SECONDS")
+		await get_tree().create_timer(3).timeout
+		print("TIMER DONE")
 	
 	running = false
 	end_day()

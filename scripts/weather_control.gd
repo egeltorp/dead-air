@@ -7,6 +7,7 @@ extends Node
 @onready var env = $"../WorldEnvironment".environment
 
 var col_grey = Color("727474")
+var col_yellow = Color("837154")
 var col_dark = Color("384156")
 
 func _ready():
@@ -24,18 +25,20 @@ func _on_day_started(day: int):
 			env.fog_light_color = col_grey
 		
 		2:
-			wind.play()
 			thunder.play()
+			env.fog_light_color = col_dark
 			print("Weather: Wind + Thunder")
 		
 		3:
 			rain.play()
 			forest.play()
+			env.fog_light_color = col_yellow
 			print("Weather: Rain + Forest")
 		
 		4:
 			rain.play()
 			wind.play()
+			env.fog_light_color = col_grey
 			print("Weather: Rain + Wind")
 		
 		5:

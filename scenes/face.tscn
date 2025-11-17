@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvicheq0moiu3"]
+
+[ext_resource type="PackedScene" uid="uid://cm1uiqulfceas" path="res://assets/models/face.glb" id="1_3alo4"]
+[ext_resource type="Texture2D" uid="uid://c3kn75eja5dlg" path="res://assets/models/face_face.png" id="2_lxkqd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a50ll"]
+shading_mode = 0
+albedo_texture = ExtResource("2_lxkqd")
+
+[node name="face" instance=ExtResource("1_3alo4")]
+
+[node name="Sphere" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_a50ll")

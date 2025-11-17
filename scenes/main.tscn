@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=68 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Environment" uid="uid://c85h52h28nlob" path="res://scenes/main_environment.tres" id="2_5he1u"]
@@ -35,10 +35,13 @@
 [ext_resource type="PackedScene" uid="uid://crvhlmt5nbnyx" path="res://scenes/speaker.tscn" id="27_2f3dj"]
 [ext_resource type="Script" uid="uid://canjvk20rrfij" path="res://scripts/speaker_lights.gd" id="30_fv21b"]
 [ext_resource type="PackedScene" uid="uid://b722fwj5bubuv" path="res://scenes/DayUI.tscn" id="33_5q0nq"]
-[ext_resource type="Script" uid="uid://cp5xqnioi84rr" path="res://scenes/weather_control.gd" id="35_kmb1v"]
+[ext_resource type="Script" uid="uid://cp5xqnioi84rr" path="res://scripts/weather_control.gd" id="35_kmb1v"]
 [ext_resource type="AudioStream" uid="uid://b25i6m2of7xn4" path="res://audio/heavy_rain_outside.wav" id="36_fuf3a"]
 [ext_resource type="AudioStream" uid="uid://cecoeeugwhjrs" path="res://audio/forest.wav" id="37_pibwh"]
 [ext_resource type="AudioStream" uid="uid://fiedvshx4e48" path="res://audio/thunderstorm.wav" id="38_c6pm6"]
+[ext_resource type="Script" uid="uid://bg8rlw0du4mkd" path="res://scripts/anomalies.gd" id="40_5he1u"]
+[ext_resource type="AudioStream" uid="uid://du1tklui5yyei" path="res://audio/sfx/door-knock-42.wav" id="41_5poiv"]
+[ext_resource type="PackedScene" uid="uid://bvicheq0moiu3" path="res://scenes/face.tscn" id="42_2cjbq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 shader = ExtResource("5_tbgi4")
@@ -148,6 +151,10 @@ albedo_color = Color(0.517647, 0.517647, 0.517647, 1)
 top_radius = 0.01
 bottom_radius = 0.01
 height = 0.01
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2cjbq"]
+height = 0.52356
+radius = 0.164063
 
 [node name="Node3D" type="Node3D"]
 
@@ -656,3 +663,27 @@ volume_db = -1.298
 [node name="ForestPlayer" type="AudioStreamPlayer" parent="WeatherControl"]
 stream = ExtResource("37_pibwh")
 volume_db = -2.811
+
+[node name="Anomalies" type="Node3D" parent="."]
+script = ExtResource("40_5he1u")
+
+[node name="Knock" type="AudioStreamPlayer3D" parent="Anomalies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25673, 0, -2.46742)
+stream = ExtResource("41_5poiv")
+volume_db = 4.324
+
+[node name="Face" type="Node3D" parent="Anomalies"]
+transform = Transform3D(0.979575, 0, 0.201078, 0, 1, 0, -0.201078, 0, 0.979575, -0.357406, 1.93918, -3.04598)
+visible = false
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Anomalies/Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0378354, 0, 0.18432)
+mass = 0.474
+gravity_scale = 0.999
+freeze = true
+
+[node name="face" parent="Anomalies/Face/RigidBody3D" instance=ExtResource("42_2cjbq")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Anomalies/Face/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115417, 0)
+shape = SubResource("CylinderShape3D_2cjbq")
