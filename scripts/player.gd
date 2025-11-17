@@ -13,6 +13,7 @@ var velocity_y := 0.0
 @onready var ray := $Camera3D/InteractionRay
 @onready var interact_cursor = $InteractCursor
 @onready var regular_cursor = $RegularCursor
+@onready var interact_label = $InteractionText
 
 var current_interactable: Interactable = null
 
@@ -21,6 +22,7 @@ var exit_inputs = ["interact"]
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	interact_cursor.visible = false
+	interact_label.visible = false
 	GameState.start_transform = global_transform
 	GameState.start_camera_transform = player_camera.global_transform
 
@@ -40,6 +42,7 @@ func _process(delta: float) -> void:
 	if GameState.using_terminal:
 		WaveformManager.update_player_tuning(delta)
 		regular_cursor.visible = false
+		interact_label.visible = false
 		if Input.is_action_just_pressed("switch_mode"):
 			WaveformManager.switch_mode()
 		if Input.is_action_just_pressed("escape"):
@@ -75,6 +78,8 @@ func _physics_process(delta):
 		var obj = ray.get_collider()
 		if obj is Interactable:
 			current_interactable = obj
+			interact_label.text = obj.get_interact_text()
+			interact_label.visible = true
 			show_interact()
 		else:
 			clear_interactable()
@@ -110,6 +115,7 @@ func hide_interact():
 	
 func clear_interactable():
 	current_interactable = null
+	interact_label.visible = false
 	hide_interact()
 	
 func sleep():

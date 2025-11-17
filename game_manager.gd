@@ -5,16 +5,22 @@ signal day_completed(day)
 signal all_days_completed()
 signal sound_over()
 
-var day := 1
+var day := 2
 var signals_solved := 0
 var player_slept_today := false
 
 @onready var speaker := $"/root/Node3D/Speaker"
-@onready var solve_sounds := [
+
+@onready var solve_sounds_1 := [
 	"res://audio/signals/day1_signal1.wav",
 	"res://audio/signals/day1_signal2.wav",
-	"res://audio/signals/day1_signal3.wav"
+	"res://audio/signals/day1_signal3.wav",
 ]
+@onready var solve_sounds_2 := [
+	"res://audio/signals/day2_signal1.wav",
+]
+
+@onready var day_sounds := [solve_sounds_1, solve_sounds_2]
 
 var running := false
 
@@ -81,6 +87,7 @@ func _wait_for_signal_solve() -> void:
 
 
 func _play_solved_sound(index: int):
+	var solve_sounds = day_sounds[day - 1]
 	var audio_path = solve_sounds[index]
 	
 	var p := speaker

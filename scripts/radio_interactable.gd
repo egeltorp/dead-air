@@ -2,6 +2,7 @@ extends Interactable
 
 var is_on: bool = false
 @onready var audio_source: AudioStreamPlayer3D = $"../../AudioStreamPlayer3D"
+@onready var start_volume = audio_source.volume_db
 
 func _ready() -> void:
 	GameManager.day_started.connect(_on_day_started)
@@ -14,7 +15,7 @@ func interact(player):
 	
 func radio():
 	if is_on:
-		audio_source.volume_db = 0
+		audio_source.volume_db = start_volume
 	elif !is_on:
 		audio_source.volume_db = -80
 

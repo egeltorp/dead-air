@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://uhkpmqldcmki"]
+[gd_scene load_steps=10 format=3 uid="uid://uhkpmqldcmki"]
 
 [ext_resource type="FontFile" uid="uid://7gjok8h2jbx8" path="res://assets/fonts/monofonto rg.otf" id="1_5x2jv"]
 [ext_resource type="Script" uid="uid://cowp86tthhw52" path="res://scripts/incoming_waveform.gd" id="2_5x2jv"]
@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://kyn6vgsu46q1" path="res://audio/sfx/switch_mode.wav" id="6_s4nbx"]
 [ext_resource type="AudioStream" uid="uid://dekyiha0tw0s4" path="res://audio/sfx/Blip5.wav" id="7_ct5pu"]
 [ext_resource type="Script" uid="uid://ryy5bg5bdgcv" path="res://scripts/signal_alert.gd" id="7_eqqrq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rmr45"]
 
 [node name="ViewportUI" type="Control"]
 layout_mode = 3
@@ -194,6 +196,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Shader" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_rmr45")
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 480.0

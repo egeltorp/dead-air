@@ -1,8 +1,9 @@
-[gd_scene load_steps=61 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=64 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="Environment" uid="uid://c85h52h28nlob" path="res://scenes/main_environment.tres" id="2_5he1u"]
 [ext_resource type="Texture2D" uid="uid://bjpnwraai4hg4" path="res://assets/textures/128x128_placeholders/Dirt/Dirt_03-128x128.png" id="2_jyhfs"]
-[ext_resource type="AudioStream" uid="uid://b2qkeod4x6ykh" path="res://audio/sfx/wind_ambience.wav" id="2_yc10j"]
+[ext_resource type="AudioStream" uid="uid://b2qkeod4x6ykh" path="res://audio/wind_ambience.wav" id="2_yc10j"]
 [ext_resource type="PackedScene" uid="uid://bptyk6rk5geyt" path="res://scenes/room.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://weg0eda6dckf" path="res://scenes/proto_terrain.tscn" id="4_tbgi4"]
 [ext_resource type="Shader" uid="uid://bda163ov6cfb0" path="res://shaders/psx.gdshader" id="5_tbgi4"]
@@ -33,8 +34,11 @@
 [ext_resource type="Script" uid="uid://bfgljg1qakwa6" path="res://scripts/utils.gd" id="24_y6deb"]
 [ext_resource type="PackedScene" uid="uid://crvhlmt5nbnyx" path="res://scenes/speaker.tscn" id="27_2f3dj"]
 [ext_resource type="Script" uid="uid://canjvk20rrfij" path="res://scripts/speaker_lights.gd" id="30_fv21b"]
-[ext_resource type="Script" uid="uid://na3o4ejqoeqy" path="res://scripts/speaker_interactable.gd" id="32_dgi5k"]
 [ext_resource type="PackedScene" uid="uid://b722fwj5bubuv" path="res://scenes/DayUI.tscn" id="33_5q0nq"]
+[ext_resource type="Script" uid="uid://cp5xqnioi84rr" path="res://scenes/weather_control.gd" id="35_kmb1v"]
+[ext_resource type="AudioStream" uid="uid://b25i6m2of7xn4" path="res://audio/heavy_rain_outside.wav" id="36_fuf3a"]
+[ext_resource type="AudioStream" uid="uid://cecoeeugwhjrs" path="res://audio/forest.wav" id="37_pibwh"]
+[ext_resource type="AudioStream" uid="uid://fiedvshx4e48" path="res://audio/thunderstorm.wav" id="38_c6pm6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 shader = ExtResource("5_tbgi4")
@@ -48,19 +52,6 @@ shader_parameter/jitter_frequency = 180.0
 shader_parameter/chromatic_aberration_strength = 0.0
 shader_parameter/vignette_strength = 0.8
 shader_parameter/vignette_radius = 0.9
-
-[sub_resource type="Environment" id="Environment_jyhfs"]
-background_mode = 1
-background_color = Color(1, 1, 1, 1)
-background_energy_multiplier = 0.0
-ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.0
-reflected_light_source = 1
-fog_enabled = true
-fog_light_color = Color(0.447059, 0.454902, 0.454902, 1)
-fog_light_energy = 0.5
-fog_depth_curve = 0.366022
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_sgp6g"]
 
@@ -182,12 +173,7 @@ offset_bottom = 23.0
 text = "FPS: 120"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_jyhfs")
-
-[node name="Wind" type="AudioStreamPlayer" parent="WorldEnvironment"]
-stream = ExtResource("2_yc10j")
-volume_db = -5.622
-autoplay = true
+environment = ExtResource("2_5he1u")
 
 [node name="Floor" type="StaticBody3D" parent="WorldEnvironment"]
 
@@ -620,7 +606,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 [node name="ToggleSpeaker" type="StaticBody3D" parent="Speaker/Mesh"]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("32_dgi5k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Speaker/Mesh/ToggleSpeaker"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0144045, 0.0142517, -0.0166625)
@@ -650,3 +635,24 @@ material_override = SubResource("StandardMaterial3D_fv21b")
 mesh = SubResource("CylinderMesh_tel4y")
 
 [node name="DayUI" parent="." instance=ExtResource("33_5q0nq")]
+
+[node name="WeatherControl" type="Node" parent="."]
+script = ExtResource("35_kmb1v")
+
+[node name="RainPlayer" type="AudioStreamPlayer3D" parent="WeatherControl"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.03256, 0)
+stream = ExtResource("36_fuf3a")
+volume_db = -14.991
+
+[node name="WindPlayer" type="AudioStreamPlayer" parent="WeatherControl"]
+stream = ExtResource("2_yc10j")
+volume_db = -4.685
+
+[node name="ThunderPlayer" type="AudioStreamPlayer3D" parent="WeatherControl"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.50315, 0)
+stream = ExtResource("38_c6pm6")
+volume_db = -1.298
+
+[node name="ForestPlayer" type="AudioStreamPlayer" parent="WeatherControl"]
+stream = ExtResource("37_pibwh")
+volume_db = -2.811
