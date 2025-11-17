@@ -25,8 +25,8 @@ func standby():
 	is_standby = true
 	incoming_freq = 0.0
 	incoming_amp = 0.0
-	player_freq = 10.0
-	player_amp = 16.0
+	player_freq = 0.0
+	player_amp = 0.0
 	emit_signal("reset")
 
 
@@ -34,6 +34,8 @@ func start_incoming(freq: float, amp: float):
 	is_standby = false
 	incoming_freq = freq
 	incoming_amp = amp
+	player_freq = 10.0
+	player_amp = 16.0
 	emit_signal("incoming_started", freq, amp)
 
 
@@ -68,7 +70,6 @@ func switch_mode():
 func _check_match():
 	if abs(player_freq - incoming_freq) <= freq_tolerance \
 	and abs(player_amp - incoming_amp) <= amp_tolerance:
-		print("solved")
 		emit_signal("solved")
 		await get_tree().create_timer(waitTime).timeout
 		standby()

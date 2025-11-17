@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://uhkpmqldcmki"]
+[gd_scene load_steps=7 format=3 uid="uid://uhkpmqldcmki"]
 
 [ext_resource type="FontFile" uid="uid://7gjok8h2jbx8" path="res://assets/fonts/monofonto rg.otf" id="1_5x2jv"]
 [ext_resource type="Script" uid="uid://cowp86tthhw52" path="res://scripts/incoming_waveform.gd" id="2_5x2jv"]
 [ext_resource type="Script" uid="uid://cg1peovstuyh2" path="res://scenes/bottom_label.gd" id="4_lldd8"]
 [ext_resource type="Script" uid="uid://dlpejow7gu5uh" path="res://scenes/player_waveform.gd" id="4_xg4ru"]
+[ext_resource type="AudioStream" uid="uid://c1coatknt5sho" path="res://audio/sfx/solved.wav" id="5_lldd8"]
+[ext_resource type="AudioStream" uid="uid://kyn6vgsu46q1" path="res://audio/sfx/switch_mode.wav" id="6_s4nbx"]
 
 [node name="ViewportUI" type="Control"]
 layout_mode = 3
@@ -131,7 +133,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_xg4ru")
 
-[node name="BottomLabel" type="Control" parent="."]
+[node name="Manager" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 5.0
 offset_top = 351.0
@@ -139,7 +141,7 @@ offset_right = 636.0
 offset_bottom = 476.0
 script = ExtResource("4_lldd8")
 
-[node name="Label" type="Label" parent="BottomLabel"]
+[node name="Label" type="Label" parent="Manager"]
 layout_mode = 0
 offset_top = 22.0
 offset_right = 560.0
@@ -148,7 +150,7 @@ theme_override_fonts/font = ExtResource("1_5x2jv")
 theme_override_font_sizes/font_size = 28
 text = "[SPACE] MODE: FREQUENCY"
 
-[node name="Label2" type="Label" parent="BottomLabel"]
+[node name="Label2" type="Label" parent="Manager"]
 layout_mode = 0
 offset_top = 56.0
 offset_right = 560.0
@@ -158,18 +160,47 @@ theme_override_font_sizes/font_size = 28
 text = "[A/D] AMP/FREQ: DECREASE/INCREASE
 [ESCAPE]: EXIT TERMINAL"
 
-[node name="Label3" type="Label" parent="BottomLabel"]
+[node name="Solved" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Solved"]
 layout_mode = 0
-offset_left = 236.0
-offset_top = -351.0
-offset_right = 323.0
-offset_bottom = -317.0
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
+[node name="Solved" type="Label" parent="Solved"]
+layout_mode = 1
+offset_right = 640.0
+offset_bottom = 480.0
 theme_override_fonts/font = ExtResource("1_5x2jv")
 theme_override_font_sizes/font_size = 28
 text = "SOLVED"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Shader" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 480.0
 color = Color(1, 1, 1, 0)
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Solved" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_lldd8")
+volume_db = 11.244
+
+[node name="SwitchMode" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_s4nbx")
+volume_db = -6.559
+
+[node name="Increase" type="AudioStreamPlayer" parent="SFX"]
+
+[node name="Decrease" type="AudioStreamPlayer" parent="SFX"]
