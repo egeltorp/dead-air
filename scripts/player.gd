@@ -13,11 +13,12 @@ var velocity_y := 0.0
 @onready var interact_cursor = $InteractCursor
 @onready var regular_cursor = $RegularCursor
 
-var exit_inputs = ["move_left", "move_right", "move_forward", "move_backward", "interact"]
+var exit_inputs = ["interact"]
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	interact_cursor.visible = false
+	WaveformManager.start_incoming(12.0, 33.0)
 
 
 func _input(event):
@@ -31,7 +32,10 @@ func _input(event):
 
 func _process(delta: float) -> void:
 	if GameState.using_terminal:
+		WaveformManager.update_player_tuning(delta)
 		regular_cursor.visible = false
+		if Input.is_action_just_pressed("switch_mode"):
+			WaveformManager.switch_mode()
 		if Input.is_action_just_pressed("escape"):
 			exit_terminal()
 		for input in exit_inputs:

@@ -25,7 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://dyuayf1el6mjg" path="res://assets/textures/128x128_placeholders/Dirt/Dirt_04-128x128.png" id="20_vxglm"]
 [ext_resource type="PackedScene" uid="uid://d2b7iyvxylo6d" path="res://scenes/bed.tscn" id="22_jscy8"]
 [ext_resource type="PackedScene" uid="uid://uhkpmqldcmki" path="res://scenes/ViewportUI.tscn" id="24_og1vs"]
-[ext_resource type="Script" uid="uid://cf1giqgnui74s" path="res://scenes/terminal.gd" id="24_vxglm"]
+[ext_resource type="Script" uid="uid://cf1giqgnui74s" path="res://scripts/terminal.gd" id="24_vxglm"]
 [ext_resource type="Script" uid="uid://bfgljg1qakwa6" path="res://scripts/utils.gd" id="24_y6deb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
@@ -239,7 +239,7 @@ transform = Transform3D(-4.67712e-08, 0, 1.07, 0, 1.07, 0, -1.07, 0, -4.67712e-0
 transform = Transform3D(-2.77567e-08, 0, 0.635, 0, 0.635, 0, -0.635, 0, -2.77567e-08, -1.9724, 0.374846, 0.475712)
 
 [node name="cabinet4" parent="Room/Decorations" instance=ExtResource("16_yc10j")]
-transform = Transform3D(0.998135, 0, -0.0610485, 0, 1, 0, 0.0610485, 0, 0.998135, -0.239788, -0.506403, -2.45744)
+transform = Transform3D(0.998135, 0, -0.0610485, 0, 1, 0, 0.0610485, 0, 0.998135, -1.51238, -0.506403, -2.42972)
 
 [node name="cabinet3" parent="Room/Decorations" instance=ExtResource("16_yc10j")]
 transform = Transform3D(0.997564, 0, 0.0697565, 0, 1, 0, -0.0697565, 0, 0.997564, -0.988165, -0.506403, -2.45744)

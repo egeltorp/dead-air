@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://uhkpmqldcmki"]
+[gd_scene load_steps=5 format=3 uid="uid://uhkpmqldcmki"]
 
 [ext_resource type="FontFile" uid="uid://7gjok8h2jbx8" path="res://assets/fonts/monofonto rg.otf" id="1_5x2jv"]
-[ext_resource type="Script" uid="uid://c1v56uxq5giju" path="res://scripts/waveform_drawer.gd" id="1_mcjyk"]
+[ext_resource type="Script" uid="uid://cowp86tthhw52" path="res://scripts/incoming_waveform.gd" id="2_5x2jv"]
+[ext_resource type="Script" uid="uid://cg1peovstuyh2" path="res://scenes/bottom_label.gd" id="4_lldd8"]
+[ext_resource type="Script" uid="uid://dlpejow7gu5uh" path="res://scenes/player_waveform.gd" id="4_xg4ru"]
 
 [node name="ViewportUI" type="Control"]
 layout_mode = 3
@@ -70,7 +72,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mcjyk")
+
+[node name="IncomingWaveform" type="Control" parent="Incoming/WaveformBox/IncomingWaveformDrawer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5x2jv")
 
 [node name="Decrypting" type="Control" parent="."]
 anchors_preset = 0
@@ -104,31 +114,59 @@ offset_right = 620.0
 offset_bottom = 211.0
 grow_horizontal = 2
 
-[node name="DecryptingWaveformDrawer2" type="Control" parent="Decrypting/WaveformBox"]
+[node name="DecryptingWaveformDrawer" type="Control" parent="Decrypting/WaveformBox"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mcjyk")
 
-[node name="Control" type="Control" parent="."]
+[node name="PlayerWaveform" type="Control" parent="Decrypting/WaveformBox/DecryptingWaveformDrawer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_xg4ru")
+
+[node name="BottomLabel" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 5.0
 offset_top = 351.0
 offset_right = 636.0
 offset_bottom = 476.0
+script = ExtResource("4_lldd8")
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Label" type="Label" parent="BottomLabel"]
 layout_mode = 0
 offset_top = 22.0
 offset_right = 560.0
-offset_bottom = 93.0
+offset_bottom = 56.0
 theme_override_fonts/font = ExtResource("1_5x2jv")
 theme_override_font_sizes/font_size = 28
-text = "[SPACE]       MODE:    AMP
-[Q/E]     AMP/FREQ:    INCREASE/DECREASE"
+text = "[SPACE] MODE: FREQUENCY"
+
+[node name="Label2" type="Label" parent="BottomLabel"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 560.0
+offset_bottom = 90.0
+theme_override_fonts/font = ExtResource("1_5x2jv")
+theme_override_font_sizes/font_size = 28
+text = "[A/D] AMP/FREQ: DECREASE/INCREASE
+[ESCAPE]: EXIT TERMINAL"
+
+[node name="Label3" type="Label" parent="BottomLabel"]
+layout_mode = 0
+offset_left = 236.0
+offset_top = -351.0
+offset_right = 323.0
+offset_bottom = -317.0
+theme_override_fonts/font = ExtResource("1_5x2jv")
+theme_override_font_sizes/font_size = 28
+text = "SOLVED"
 
 [node name="Shader" type="ColorRect" parent="."]
 layout_mode = 0

@@ -3,18 +3,21 @@ extends Node
 signal incoming_started(freq, amp)
 signal solved()
 signal reset()
+signal mode_changed(mode_freq: bool)
+
+var waitTime: float = 5.0
 
 var incoming_freq: float = 0.0
 var incoming_amp: float = 0.0
 
-var player_freq: float = 0.0
-var player_amp: float = 0.0
+var player_freq: float = 10.0
+var player_amp: float = 16.0
 
 var mode_freq := true
 
 var is_standby := true
 
-@export var freq_tolerance := 0.2
+@export var freq_tolerance := 1.0
 @export var amp_tolerance := 2.0
 
 
@@ -22,8 +25,8 @@ func standby():
 	is_standby = true
 	incoming_freq = 0.0
 	incoming_amp = 0.0
-	player_freq = 0.0
-	player_amp = 0.0
+	player_freq = 10.0
+	player_amp = 16.0
 	emit_signal("reset")
 
 
@@ -38,7 +41,7 @@ func update_player_tuning(delta):
 	if is_standby:
 		return
 	
-	var change_speed = 0.7
+	var change_speed = 10
 
 	if mode_freq:
 		if Input.is_action_pressed("tune_up"):
@@ -59,10 +62,13 @@ func update_player_tuning(delta):
 
 func switch_mode():
 	mode_freq = !mode_freq
+	emit_signal("mode_changed", mode_freq)
 
 
 func _check_match():
 	if abs(player_freq - incoming_freq) <= freq_tolerance \
 	and abs(player_amp - incoming_amp) <= amp_tolerance:
+		print("solved")
 		emit_signal("solved")
+		await get_tree().create_timer(waitTime).timeout
 		standby()
