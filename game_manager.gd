@@ -5,7 +5,7 @@ signal day_completed(day)
 signal all_days_completed()
 signal sound_over()
 
-var day := 2
+var day := 1
 var signals_solved := 0
 var player_slept_today := false
 

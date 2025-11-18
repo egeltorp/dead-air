@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed := 3.0
+@export var speed := 2.0
 @export var mouse_sense := 0.003
 @export var jump_power := 4.0
 var gravity := -9.8 * 2
