@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://nitsxa1pvkcu"]
+
+[ext_resource type="PackedScene" uid="uid://cqqm8hx6s40nr" path="res://assets/models/tape_recorder.glb" id="1_k4g2f"]
+[ext_resource type="Script" uid="uid://bmj74tcrm361b" path="res://scenes/tape_recorder.gd" id="2_vfjvg"]
+
+[node name="tape_recorder" instance=ExtResource("1_k4g2f")]
+script = ExtResource("2_vfjvg")

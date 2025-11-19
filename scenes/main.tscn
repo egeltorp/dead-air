@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=70 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Environment" uid="uid://c85h52h28nlob" path="res://scenes/main_environment.tres" id="2_5he1u"]
@@ -42,6 +42,8 @@
 [ext_resource type="Script" uid="uid://bg8rlw0du4mkd" path="res://scripts/anomalies.gd" id="40_5he1u"]
 [ext_resource type="AudioStream" uid="uid://du1tklui5yyei" path="res://audio/sfx/door-knock-42.wav" id="41_5poiv"]
 [ext_resource type="PackedScene" uid="uid://bvicheq0moiu3" path="res://scenes/face.tscn" id="42_2cjbq"]
+[ext_resource type="PackedScene" uid="uid://dhmkqujqh2jgq" path="res://scenes/ak_47.tscn" id="43_chjal"]
+[ext_resource type="PackedScene" uid="uid://nitsxa1pvkcu" path="res://scenes/tape_recorder.tscn" id="44_cjqg0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 shader = ExtResource("5_tbgi4")
@@ -262,6 +264,9 @@ transform = Transform3D(0.997564, 0, 0.0697565, 0, 1, 0, -0.0697565, 0, 0.997564
 
 [node name="bed2" parent="Room/Decorations" instance=ExtResource("22_jscy8")]
 transform = Transform3D(-0.999848, 0, -0.0174525, 0, 1, 0, 0.0174525, 0, -0.999848, 0.795139, -0.875, 1.86499)
+
+[node name="ak47" parent="Room/Decorations" instance=ExtResource("43_chjal")]
+transform = Transform3D(-0.416171, 1.18931, -1.55317, 1.90441, -0.116729, -0.599667, -0.447245, -1.60372, -1.10818, -0.685015, -0.802569, -2.30078)
 
 [node name="Terminal" type="Node3D" parent="Room"]
 
@@ -687,3 +692,6 @@ freeze = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Anomalies/Face/RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115417, 0)
 shape = SubResource("CylinderShape3D_2cjbq")
+
+[node name="tape_recorder" parent="." instance=ExtResource("44_cjqg0")]
+transform = Transform3D(-0.307311, 0, -1.21164, 0, 1.25, 0, 1.21164, 0, -0.307311, 1.77162, 1.73794, 0.419659)

@@ -12,12 +12,12 @@ var player_slept_today := false
 @onready var speaker := $"/root/Node3D/Speaker"
 
 @onready var solve_sounds_1 := [
-	"res://audio/signals/day1_signal1.wav",
+	"res://audio/signals/static.wav",
 	"res://audio/signals/day1_signal2.wav",
 	"res://audio/signals/day1_signal3.wav",
 ]
 @onready var solve_sounds_2 := [
-	"res://audio/signals/day2_signal1.wav",
+	"res://audio/signals/static.wav",
 	"res://audio/signals/day2_signal2.wav",
 	"res://audio/signals/static.wav",
 ]
@@ -66,7 +66,7 @@ func _run_signal_sequence():
 		
 		# brief delay before next incoming signal
 		print("Starting TIMER 30 SECONDS")
-		await get_tree().create_timer(3).timeout
+		await get_tree().create_timer(30).timeout
 		print("TIMER DONE")
 	
 	running = false
