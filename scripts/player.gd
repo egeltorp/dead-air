@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
-@export var speed := 2.0
+@export var speed := 1.5
 @export var mouse_sense := 0.003
-@export var jump_power := 4.0
-var gravity := -9.8 * 2
+@export var jump_power := 1.75
+var gravity := -9.8 * 1.25
 var velocity_y := 0.0
 
 
@@ -65,14 +65,26 @@ func _process(delta: float) -> void:
 			hide_interact()
 
 func _physics_process(delta):
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = jump_power
+
+	if Input.is_action_just_pressed("ui_cancel"):
+		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	var dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var strafe_direction = transform.basis.x * input_dir.x
+	var forward_direction = player_camera.global_transform.basis.z * input_dir.y  # Change direction to match correct forward movement
 
-	velocity.x = dir.x * speed
-	velocity.z = dir.z * speed
+	velocity.x = (strafe_direction.x + forward_direction.x) * speed
+	velocity.z = (strafe_direction.z + forward_direction.z) * speed
 
-	velocity_y += gravity * delta
-	velocity.y = velocity_y
+	move_and_slide()
 	
 	if ray.is_colliding():
 		var obj = ray.get_collider()
@@ -85,11 +97,6 @@ func _physics_process(delta):
 			clear_interactable()
 	else:
 		clear_interactable()
-	
-	move_and_slide()
-	
-	if is_on_floor() and Input.is_action_just_pressed("jump"):
-		velocity_y = jump_power
 
 func enter_terminal(hit):
 	GameState.using_terminal = true

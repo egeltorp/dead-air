@@ -22,6 +22,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0222168, -0.00686646, -0.0
 shape = SubResource("BoxShape3D_8s1la")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="Plane" index="1"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D2" index="0"]
 shape = SubResource("ConcavePolygonShape3D_8s1la")

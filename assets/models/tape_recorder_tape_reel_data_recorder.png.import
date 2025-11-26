@@ -2,14 +2,14 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmoq4affqy8w5"
+uid="uid://pxmoh7cdacak"
 path.s3tc="res://.godot/imported/tape_recorder_tape_reel_data_recorder.png-72177b58ccc190cd02e2983b72a15a2c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "1256c887e5675a4a55843fb98395bb3e"
+"md5": "6096322ce1f1f3248c10c1bc382ce12a"
 }
 
 [deps]

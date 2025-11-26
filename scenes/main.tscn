@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=73 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Environment" uid="uid://c85h52h28nlob" path="res://scenes/main_environment.tres" id="2_5he1u"]
@@ -16,8 +16,10 @@
 [ext_resource type="PackedScene" uid="uid://bmkluc0jkr35n" path="res://scenes/terminal.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://cfrwo50df6uqo" path="res://assets/models/tree.glb" id="13_trceg"]
 [ext_resource type="Texture2D" uid="uid://d0gljbnf6gs0y" path="res://assets/textures/rug.png" id="14_a8y0u"]
+[ext_resource type="Script" uid="uid://bi3qog346mgg1" path="res://scenes/door_interactable.gd" id="14_vchkt"]
 [ext_resource type="PackedScene" uid="uid://vab61w0hylf6" path="res://assets/models/map.glb" id="15_0ld40"]
 [ext_resource type="PackedScene" uid="uid://c7h3331a6oog0" path="res://assets/models/dish_big.glb" id="15_jkv2x"]
+[ext_resource type="AudioStream" uid="uid://cfxsxtn0isxms" path="res://audio/sfx/door-pull.mp3" id="15_txyw0"]
 [ext_resource type="Script" uid="uid://n1imrwfcpra8" path="res://scripts/blinking_light.gd" id="16_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://g5mnt8gcvdu2" path="res://scenes/cabinet.tscn" id="16_yc10j"]
 [ext_resource type="PackedScene" uid="uid://dusjoq2m7jy28" path="res://assets/models/posters.glb" id="17_muem4"]
@@ -43,7 +45,7 @@
 [ext_resource type="AudioStream" uid="uid://du1tklui5yyei" path="res://audio/sfx/door-knock-42.wav" id="41_5poiv"]
 [ext_resource type="PackedScene" uid="uid://bvicheq0moiu3" path="res://scenes/face.tscn" id="42_2cjbq"]
 [ext_resource type="PackedScene" uid="uid://dhmkqujqh2jgq" path="res://scenes/ak_47.tscn" id="43_chjal"]
-[ext_resource type="PackedScene" uid="uid://nitsxa1pvkcu" path="res://scenes/tape_recorder.tscn" id="44_cjqg0"]
+[ext_resource type="PackedScene" uid="uid://bmh03utn5nphv" path="res://scenes/tape_recorder_new.tscn" id="46_txyw0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 shader = ExtResource("5_tbgi4")
@@ -104,6 +106,9 @@ albedo_texture = ExtResource("6_o6xl0")
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_o6xl0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_txyw0"]
+size = Vector3(0.355957, 0.705566, 0.139709)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6deb"]
 albedo_texture = ExtResource("7_pm3ni")
@@ -251,6 +256,20 @@ transform = Transform3D(0.00349064, 0, -0.999994, 0, 1, 0, 0.999994, 0, 0.003490
 
 [node name="door" parent="Room/Decorations" instance=ExtResource("18_dp3eg")]
 transform = Transform3D(-4.67712e-08, 0, 1.07, 0, 1.07, 0, -1.07, 0, -4.67712e-08, -2.13252, -0.146324, -1.43566)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Room/Decorations/door"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("14_vchkt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Decorations/door/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.322021, -0.147217, 0.152924)
+shape = SubResource("BoxShape3D_txyw0")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Room/Decorations/door/StaticBody3D"]
+transform = Transform3D(-4.08518e-08, 0, -0.934579, 0, 0.934579, 0, 0.934579, 0, -4.08518e-08, 0.325667, -0.137421, -0.0518259)
+stream = ExtResource("15_txyw0")
+volume_db = -15.856
 
 [node name="map" parent="Room/Decorations" instance=ExtResource("15_0ld40")]
 transform = Transform3D(-2.77567e-08, 0, 0.635, 0, 0.635, 0, -0.635, 0, -2.77567e-08, -1.9724, 0.374846, 0.475712)
@@ -692,5 +711,5 @@ freeze = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115417, 0)
 shape = SubResource("CylinderShape3D_2cjbq")
 
-[node name="tape_recorder" parent="." instance=ExtResource("44_cjqg0")]
-transform = Transform3D(-0.307311, 0, -1.21164, 0, 1.25, 0, 1.21164, 0, -0.307311, 1.77162, 1.73794, 0.419659)
+[node name="tape_recorder" parent="." instance=ExtResource("46_txyw0")]
+transform = Transform3D(-0.354895, 0, -0.934906, 0, 1, 0, 0.934906, 0, -0.354895, 1.7594, 1.7105, 0.397459)
