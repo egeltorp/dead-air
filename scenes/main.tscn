@@ -174,7 +174,6 @@ size_flags_vertical = 6
 color = Color(1, 1, 1, 0)
 
 [node name="Debug" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="FPS" type="Label" parent="Debug"]
 offset_right = 85.0

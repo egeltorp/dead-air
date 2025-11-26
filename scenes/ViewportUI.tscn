@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://uhkpmqldcmki"]
+[gd_scene load_steps=11 format=3 uid="uid://uhkpmqldcmki"]
 
 [ext_resource type="FontFile" uid="uid://7gjok8h2jbx8" path="res://assets/fonts/monofonto rg.otf" id="1_5x2jv"]
 [ext_resource type="Script" uid="uid://cowp86tthhw52" path="res://scripts/incoming_waveform.gd" id="2_5x2jv"]
+[ext_resource type="Script" uid="uid://b70n1pxmpfp4a" path="res://scenes/waveform_audio.gd" id="3_5xea6"]
 [ext_resource type="Script" uid="uid://cg1peovstuyh2" path="res://scripts/bottom_label.gd" id="4_lldd8"]
 [ext_resource type="Script" uid="uid://dlpejow7gu5uh" path="res://scripts/player_waveform.gd" id="4_xg4ru"]
 [ext_resource type="AudioStream" uid="uid://c1coatknt5sho" path="res://audio/sfx/solved.wav" id="5_lldd8"]
@@ -79,7 +80,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="IncomingWaveform" type="Control" parent="Incoming/WaveformBox/IncomingWaveformDrawer"]
+[node name="IncomingWaveform" type="Control" parent="Incoming/WaveformBox/IncomingWaveformDrawer" node_paths=PackedStringArray("audio")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,6 +88,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_5x2jv")
+audio = NodePath("../WaveformAudio")
+
+[node name="WaveformAudio" type="Node" parent="Incoming/WaveformBox/IncomingWaveformDrawer" node_paths=PackedStringArray("waveform_source")]
+script = ExtResource("3_5xea6")
+waveform_source = NodePath("../IncomingWaveform")
 
 [node name="Decrypting" type="Control" parent="."]
 anchors_preset = 0
@@ -128,7 +134,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PlayerWaveform" type="Control" parent="Decrypting/WaveformBox/DecryptingWaveformDrawer"]
+[node name="PlayerWaveform" type="Control" parent="Decrypting/WaveformBox/DecryptingWaveformDrawer" node_paths=PackedStringArray("audio")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -136,6 +142,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_xg4ru")
+audio = NodePath("../WaveformAudio2")
+
+[node name="WaveformAudio2" type="Node" parent="Decrypting/WaveformBox/DecryptingWaveformDrawer" node_paths=PackedStringArray("waveform_source")]
+script = ExtResource("3_5xea6")
+waveform_source = NodePath("../PlayerWaveform")
 
 [node name="Manager" type="Control" parent="."]
 anchors_preset = 0
