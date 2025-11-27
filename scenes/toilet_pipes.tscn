@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr818y8426s76"]
+
+[ext_resource type="PackedScene" uid="uid://c1hvhc6yfqgyo" path="res://assets/models/pipes.glb" id="1_4pnyb"]
+
+[node name="pipes" instance=ExtResource("1_4pnyb")]
+
+[node name="Cube_002" parent="." index="1"]
+visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=75 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Environment" uid="uid://c85h52h28nlob" path="res://scenes/main_environment.tres" id="2_5he1u"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bmkluc0jkr35n" path="res://scenes/terminal.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://cfrwo50df6uqo" path="res://assets/models/tree.glb" id="13_trceg"]
 [ext_resource type="Texture2D" uid="uid://d0gljbnf6gs0y" path="res://assets/textures/rug.png" id="14_a8y0u"]
-[ext_resource type="Script" uid="uid://bi3qog346mgg1" path="res://scenes/door_interactable.gd" id="14_vchkt"]
+[ext_resource type="Script" uid="uid://bi3qog346mgg1" path="res://scripts/door_interactable.gd" id="14_vchkt"]
 [ext_resource type="PackedScene" uid="uid://vab61w0hylf6" path="res://assets/models/map.glb" id="15_0ld40"]
 [ext_resource type="PackedScene" uid="uid://c7h3331a6oog0" path="res://assets/models/dish_big.glb" id="15_jkv2x"]
 [ext_resource type="AudioStream" uid="uid://cfxsxtn0isxms" path="res://audio/sfx/door-pull.mp3" id="15_txyw0"]
@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://uhkpmqldcmki" path="res://scenes/ViewportUI.tscn" id="24_og1vs"]
 [ext_resource type="Script" uid="uid://cf1giqgnui74s" path="res://scripts/terminal.gd" id="24_vxglm"]
 [ext_resource type="Script" uid="uid://bfgljg1qakwa6" path="res://scripts/utils.gd" id="24_y6deb"]
+[ext_resource type="PackedScene" uid="uid://cr818y8426s76" path="res://scenes/toilet_pipes.tscn" id="26_nvyfr"]
 [ext_resource type="PackedScene" uid="uid://crvhlmt5nbnyx" path="res://scenes/speaker.tscn" id="27_2f3dj"]
 [ext_resource type="Script" uid="uid://canjvk20rrfij" path="res://scripts/speaker_lights.gd" id="30_fv21b"]
 [ext_resource type="PackedScene" uid="uid://b722fwj5bubuv" path="res://scenes/DayUI.tscn" id="33_5q0nq"]
@@ -46,6 +47,7 @@
 [ext_resource type="PackedScene" uid="uid://bvicheq0moiu3" path="res://scenes/face.tscn" id="42_2cjbq"]
 [ext_resource type="PackedScene" uid="uid://dhmkqujqh2jgq" path="res://scenes/ak_47.tscn" id="43_chjal"]
 [ext_resource type="PackedScene" uid="uid://bmh03utn5nphv" path="res://scenes/tape_recorder_new.tscn" id="46_txyw0"]
+[ext_resource type="PackedScene" uid="uid://buswnqqoqwe63" path="res://scenes/toilet.tscn" id="47_vc5cj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 shader = ExtResource("5_tbgi4")
@@ -249,7 +251,7 @@ mesh = SubResource("PlaneMesh_o6xl0")
 skeleton = NodePath("../..")
 
 [node name="posters" parent="Room/Decorations" instance=ExtResource("17_muem4")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.8013, 0.230844, 2.49969)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.8013, -0.00601077, 2.49969)
 
 [node name="posters2" parent="Room/Decorations" instance=ExtResource("17_muem4")]
 transform = Transform3D(0.00349064, 0, -0.999994, 0, 1, 0, 0.999994, 0, 0.00349064, 2.00173, 0.230844, -0.470264)
@@ -261,6 +263,7 @@ transform = Transform3D(-4.67712e-08, 0, 1.07, 0, 1.07, 0, -1.07, 0, -4.67712e-0
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("14_vchkt")
+interact_text = "Locked Door"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Decorations/door/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.322021, -0.147217, 0.152924)
@@ -330,6 +333,12 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -1.14617, 0.319748, -2.
 
 [node name="pipes" parent="Room" instance=ExtResource("22_j8jky")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.49213, 1.11563, -2.76269)
+
+[node name="pipes" parent="Room/pipes" instance=ExtResource("26_nvyfr")]
+transform = Transform3D(0.0251156, 0, 0.689543, 0, 0.69, 0, -0.689543, 0, 0.0251156, -5.256, 0, -0.871)
+
+[node name="toilet" parent="Room" instance=ExtResource("47_vc5cj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.10513, -1.05, 2.02)
 
 [node name="Outside" type="Node3D" parent="."]
 
@@ -696,7 +705,7 @@ stream = ExtResource("41_5poiv")
 volume_db = 4.324
 
 [node name="Face" type="Node3D" parent="Anomalies"]
-transform = Transform3D(0.979575, 0, 0.201078, 0, 1, 0, -0.201078, 0, 0.979575, -0.357406, 1.93918, -3.04598)
+transform = Transform3D(0.78366, 0, 0.160862, 0, 0.8, 0, -0.160862, 0, 0.78366, -0.357406, 1.93918, -3.04598)
 visible = false
 
 [node name="RigidBody3D" type="RigidBody3D" parent="Anomalies/Face"]

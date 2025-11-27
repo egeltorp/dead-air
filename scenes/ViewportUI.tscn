@@ -1,14 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://uhkpmqldcmki"]
+[gd_scene load_steps=13 format=3 uid="uid://uhkpmqldcmki"]
 
 [ext_resource type="FontFile" uid="uid://7gjok8h2jbx8" path="res://assets/fonts/monofonto rg.otf" id="1_5x2jv"]
 [ext_resource type="Script" uid="uid://cowp86tthhw52" path="res://scripts/incoming_waveform.gd" id="2_5x2jv"]
-[ext_resource type="Script" uid="uid://b70n1pxmpfp4a" path="res://scenes/waveform_audio.gd" id="3_5xea6"]
+[ext_resource type="Script" uid="uid://b70n1pxmpfp4a" path="res://scripts/waveform_audio.gd" id="3_5xea6"]
 [ext_resource type="Script" uid="uid://cg1peovstuyh2" path="res://scripts/bottom_label.gd" id="4_lldd8"]
 [ext_resource type="Script" uid="uid://dlpejow7gu5uh" path="res://scripts/player_waveform.gd" id="4_xg4ru"]
 [ext_resource type="AudioStream" uid="uid://c1coatknt5sho" path="res://audio/sfx/solved.wav" id="5_lldd8"]
 [ext_resource type="AudioStream" uid="uid://kyn6vgsu46q1" path="res://audio/sfx/switch_mode.wav" id="6_s4nbx"]
 [ext_resource type="AudioStream" uid="uid://dekyiha0tw0s4" path="res://audio/sfx/Blip5.wav" id="7_ct5pu"]
 [ext_resource type="Script" uid="uid://ryy5bg5bdgcv" path="res://scripts/signal_alert.gd" id="7_eqqrq"]
+[ext_resource type="Script" uid="uid://bnjwxyg5ldy6j" path="res://scenes/static_controller.gd" id="10_0drq3"]
+[ext_resource type="AudioStream" uid="uid://bffm32kg8i5t1" path="res://audio/sfx/loop_static.mp3" id="10_rmr45"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rmr45"]
 
@@ -234,3 +236,15 @@ script = ExtResource("7_eqqrq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19384, 0, 0)
 stream = ExtResource("7_ct5pu")
 volume_db = -19.608
+
+[node name="StaticController" type="Node" parent="."]
+script = ExtResource("10_0drq3")
+
+[node name="IncomingStatic" type="AudioStreamPlayer3D" parent="StaticController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18132, 0, 0)
+stream = ExtResource("10_rmr45")
+volume_db = -12.973
+
+[node name="PlayerStatic" type="AudioStreamPlayer3D" parent="StaticController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18132, 0, 0)
+stream = ExtResource("10_rmr45")
