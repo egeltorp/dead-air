@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=78 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Environment" uid="uid://c85h52h28nlob" path="res://scenes/main_environment.tres" id="2_5he1u"]
@@ -48,6 +48,9 @@
 [ext_resource type="PackedScene" uid="uid://dhmkqujqh2jgq" path="res://scenes/ak_47.tscn" id="43_chjal"]
 [ext_resource type="PackedScene" uid="uid://bmh03utn5nphv" path="res://scenes/tape_recorder_new.tscn" id="46_txyw0"]
 [ext_resource type="PackedScene" uid="uid://buswnqqoqwe63" path="res://scenes/toilet.tscn" id="47_vc5cj"]
+[ext_resource type="PackedScene" uid="uid://c0sros5avvpgt" path="res://scenes/chair_wrapper.tscn" id="49_ty1g6"]
+[ext_resource type="PackedScene" uid="uid://txgbgeodgl6q" path="res://scenes/trashcan.tscn" id="50_j2jfr"]
+[ext_resource type="PackedScene" uid="uid://c36nfd0ckvp2m" path="res://scenes/storage.tscn" id="51_bjg73"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 shader = ExtResource("5_tbgi4")
@@ -236,13 +239,13 @@ mesh = SubResource("CylinderMesh_dp3eg")
 [node name="Decorations" type="Node3D" parent="Room"]
 
 [node name="rug" type="MeshInstance3D" parent="Room/Decorations"]
-transform = Transform3D(0.980299, 0, -0.19752, 0, 1, 0, 0.19752, 0, 0.980299, -0.460344, -1.2763, -0.438204)
+transform = Transform3D(0.994191, 0, -0.107634, 0, 1, 0, 0.107634, 0, 0.994191, -0.273241, -1.2763, -0.291992)
 material_override = SubResource("StandardMaterial3D_jkv2x")
 mesh = SubResource("PlaneMesh_jbj1t")
 skeleton = NodePath("../../..")
 
 [node name="flag" parent="Room/Decorations" instance=ExtResource("6_tefeu")]
-transform = Transform3D(-1, 0, 8.74228e-08, 1.78813e-09, 0.999791, 0.0204538, -8.74045e-08, 0.0204538, -0.999791, 2.01493, 0.728207, 0.0342404)
+transform = Transform3D(-0.62, -8.05958e-10, 9.35978e-08, 1.10864e-09, 0.61987, 0.0126814, -9.35947e-08, 0.0126814, -0.61987, 2.01493, 0.889775, 0.0342404)
 
 [node name="Window" type="MeshInstance3D" parent="Room/Decorations"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.592934, -2.54875)
@@ -251,7 +254,7 @@ mesh = SubResource("PlaneMesh_o6xl0")
 skeleton = NodePath("../..")
 
 [node name="posters" parent="Room/Decorations" instance=ExtResource("17_muem4")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.8013, -0.00601077, 2.49969)
+transform = Transform3D(-0.645, 0, 9.73923e-08, 0, 0.645, 0, -9.73923e-08, 0, -0.645, 1.57543, -0.00601077, 2.49969)
 
 [node name="posters2" parent="Room/Decorations" instance=ExtResource("17_muem4")]
 transform = Transform3D(0.00349064, 0, -0.999994, 0, 1, 0, 0.999994, 0, 0.00349064, 2.00173, 0.230844, -0.470264)
@@ -275,19 +278,28 @@ stream = ExtResource("15_txyw0")
 volume_db = -15.856
 
 [node name="map" parent="Room/Decorations" instance=ExtResource("15_0ld40")]
-transform = Transform3D(-2.77567e-08, 0, 0.635, 0, 0.635, 0, -0.635, 0, -2.77567e-08, -1.9724, 0.374846, 0.475712)
+transform = Transform3D(-1.48619e-08, 0, -0.34, 0, 0.34, 0, 0.34, 0, -1.48619e-08, 1.98992, 0.173191, 1.58475)
 
 [node name="cabinet4" parent="Room/Decorations" instance=ExtResource("16_yc10j")]
-transform = Transform3D(0.998135, 0, -0.0610485, 0, 1, 0, 0.0610485, 0, 0.998135, -1.51238, -0.506403, -2.42972)
+transform = Transform3D(0.998135, 0, -0.0610485, 0, 1, 0, 0.0610485, 0, 0.998135, -1.05808, -0.96024, -2.42972)
 
 [node name="cabinet3" parent="Room/Decorations" instance=ExtResource("16_yc10j")]
-transform = Transform3D(0.997564, 0, 0.0697565, 0, 1, 0, -0.0697565, 0, 0.997564, -0.988165, -0.506403, -2.45744)
+transform = Transform3D(0.997564, 0, 0.0697565, 0, 1, 0, -0.0697565, 0, 0.997564, -0.533863, -0.96024, -2.45744)
 
 [node name="bed2" parent="Room/Decorations" instance=ExtResource("22_jscy8")]
 transform = Transform3D(-0.999848, 0, -0.0174525, 0, 1, 0, 0.0174525, 0, -0.999848, 0.795139, -0.875, 1.86499)
 
 [node name="ak47" parent="Room/Decorations" instance=ExtResource("43_chjal")]
-transform = Transform3D(-0.416171, 1.18931, -1.55317, 1.90441, -0.116729, -0.599667, -0.447245, -1.60372, -1.10818, -0.685015, -0.802569, -2.30078)
+transform = Transform3D(-0.416171, 1.18931, -1.55317, 1.90441, -0.116729, -0.599667, -0.447245, -1.60372, -1.10818, -1.91012, -0.802569, -2.30078)
+
+[node name="trashcan" parent="Room/Decorations" instance=ExtResource("50_j2jfr")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 1.74297, -0.998488, 0.911406)
+
+[node name="pipes" parent="Room/Decorations" instance=ExtResource("22_j8jky")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.49213, 1.11563, -2.76269)
+
+[node name="pipes" parent="Room/Decorations/pipes" instance=ExtResource("26_nvyfr")]
+transform = Transform3D(0.0251156, 0, 0.689543, 0, 0.69, 0, -0.689543, 0, 0.0251156, -5.256, 0, -0.871)
 
 [node name="Terminal" type="Node3D" parent="Room"]
 
@@ -329,16 +341,22 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="radio" parent="Room" instance=ExtResource("21_qkpxi")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -1.14617, 0.319748, -2.25926)
-
-[node name="pipes" parent="Room" instance=ExtResource("22_j8jky")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.49213, 1.11563, -2.76269)
-
-[node name="pipes" parent="Room/pipes" instance=ExtResource("26_nvyfr")]
-transform = Transform3D(0.0251156, 0, 0.689543, 0, 0.69, 0, -0.689543, 0, 0.0251156, -5.256, 0, -0.871)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.612287, -0.134089, -2.25926)
 
 [node name="toilet" parent="Room" instance=ExtResource("47_vc5cj")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.10513, -1.05, 2.02)
+
+[node name="Chair" parent="Room" instance=ExtResource("49_ty1g6")]
+transform = Transform3D(0.631583, 0, -0.775308, 0, 1, 0, 0.775308, 0, 0.631583, 0.836915, -0.962272, -1.81836)
+
+[node name="Storage" type="Node3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3263, 0)
+
+[node name="storage" parent="Room/Storage" instance=ExtResource("51_bjg73")]
+transform = Transform3D(-0.635, 0, 5.55135e-08, 0, 0.635, 0, -5.55135e-08, 0, -0.635, -1.86546, 0.708728, 0.19223)
+
+[node name="storage2" parent="Room/Storage" instance=ExtResource("51_bjg73")]
+transform = Transform3D(-0.634863, 0, -0.0131654, 0, 0.635, 0, 0.0131654, 0, -0.634863, -1.86546, 0.708728, 1.14395)
 
 [node name="Outside" type="Node3D" parent="."]
 
@@ -640,7 +658,7 @@ script = ExtResource("24_y6deb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9254, 1.78606, -0.913907)
 
 [node name="Mesh" parent="Speaker" instance=ExtResource("27_2f3dj")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-0.895, 0, -1.35141e-07, 0, 0.895, 0, 1.35141e-07, 0, -0.895, 0, -0.0281245, 0)
 
 [node name="ToggleSpeaker" type="StaticBody3D" parent="Speaker/Mesh"]
 collision_layer = 2
@@ -651,6 +669,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0144045, 0.0142517, -0.0166
 shape = SubResource("BoxShape3D_5q0nq")
 
 [node name="Lights" type="Node3D" parent="Speaker"]
+transform = Transform3D(0.895, 0, 0, 0, 0.895, 0, 0, 0, 0.895, 0, -0.0281245, 0)
 script = ExtResource("30_fv21b")
 
 [node name="red_light" type="OmniLight3D" parent="Speaker/Lights"]
@@ -669,7 +688,7 @@ light_specular = 0.0
 omni_range = 0.875
 
 [node name="Lamp" type="MeshInstance3D" parent="Speaker/Lights"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.20495, 0.181101, 0)
+transform = Transform3D(-3.91217e-08, -0.895, 0, 0.895, -3.91217e-08, 0, 0, 0, 0.895, -0.20495, 0.181101, 0)
 material_override = SubResource("StandardMaterial3D_fv21b")
 mesh = SubResource("CylinderMesh_tel4y")
 
@@ -720,5 +739,5 @@ freeze = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115417, 0)
 shape = SubResource("CylinderShape3D_2cjbq")
 
-[node name="tape_recorder" parent="." instance=ExtResource("46_txyw0")]
+[node name="TapeRecorder" parent="." instance=ExtResource("46_txyw0")]
 transform = Transform3D(-0.354895, 0, -0.934906, 0, 1, 0, 0.934906, 0, -0.354895, 1.7594, 1.7105, 0.397459)

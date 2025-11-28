@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://kyn6vgsu46q1" path="res://audio/sfx/switch_mode.wav" id="6_s4nbx"]
 [ext_resource type="AudioStream" uid="uid://dekyiha0tw0s4" path="res://audio/sfx/Blip5.wav" id="7_ct5pu"]
 [ext_resource type="Script" uid="uid://ryy5bg5bdgcv" path="res://scripts/signal_alert.gd" id="7_eqqrq"]
-[ext_resource type="Script" uid="uid://bnjwxyg5ldy6j" path="res://scenes/static_controller.gd" id="10_0drq3"]
+[ext_resource type="Script" uid="uid://bnjwxyg5ldy6j" path="res://scripts/static_controller.gd" id="10_0drq3"]
 [ext_resource type="AudioStream" uid="uid://bffm32kg8i5t1" path="res://audio/sfx/loop_static.mp3" id="10_rmr45"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rmr45"]
