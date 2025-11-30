@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://uhkpmqldcmki"]
+[gd_scene load_steps=14 format=3 uid="uid://uhkpmqldcmki"]
 
 [ext_resource type="FontFile" uid="uid://7gjok8h2jbx8" path="res://assets/fonts/monofonto rg.otf" id="1_5x2jv"]
 [ext_resource type="Script" uid="uid://cowp86tthhw52" path="res://scripts/incoming_waveform.gd" id="2_5x2jv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cg1peovstuyh2" path="res://scripts/bottom_label.gd" id="4_lldd8"]
 [ext_resource type="Script" uid="uid://dlpejow7gu5uh" path="res://scripts/player_waveform.gd" id="4_xg4ru"]
 [ext_resource type="AudioStream" uid="uid://c1coatknt5sho" path="res://audio/sfx/solved.wav" id="5_lldd8"]
+[ext_resource type="Shader" uid="uid://cnny2vj015j05" path="res://shaders/ViewportUI.gdshader" id="6_5qw7i"]
 [ext_resource type="AudioStream" uid="uid://kyn6vgsu46q1" path="res://audio/sfx/switch_mode.wav" id="6_s4nbx"]
 [ext_resource type="AudioStream" uid="uid://dekyiha0tw0s4" path="res://audio/sfx/Blip5.wav" id="7_ct5pu"]
 [ext_resource type="Script" uid="uid://ryy5bg5bdgcv" path="res://scripts/signal_alert.gd" id="7_eqqrq"]
@@ -13,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://bffm32kg8i5t1" path="res://audio/sfx/loop_static.mp3" id="10_rmr45"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rmr45"]
+shader = ExtResource("6_5qw7i")
 
 [node name="ViewportUI" type="Control"]
 layout_mode = 3
@@ -49,6 +51,7 @@ offset_right = 40.0
 offset_bottom = 6.0
 
 [node name="Label" type="Label" parent="Incoming"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -223,7 +226,7 @@ volume_db = -5.621
 
 [node name="SwitchMode" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("6_s4nbx")
-volume_db = -6.559
+volume_db = -18.74
 
 [node name="Increase" type="AudioStreamPlayer" parent="SFX"]
 

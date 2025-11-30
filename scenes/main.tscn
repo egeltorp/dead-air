@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=83 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Environment" uid="uid://c85h52h28nlob" path="res://scenes/main_environment.tres" id="2_5he1u"]
@@ -52,6 +52,10 @@
 [ext_resource type="PackedScene" uid="uid://txgbgeodgl6q" path="res://scenes/trashcan.tscn" id="50_j2jfr"]
 [ext_resource type="PackedScene" uid="uid://c36nfd0ckvp2m" path="res://scenes/storage.tscn" id="51_bjg73"]
 [ext_resource type="PackedScene" uid="uid://c23ok1tca866i" path="res://scenes/crate.tscn" id="52_bu4jf"]
+[ext_resource type="PackedScene" uid="uid://c5py37eltqcor" path="res://scenes/new_terminal.tscn" id="53_o7ddy"]
+[ext_resource type="AudioStream" uid="uid://bh4w3alkdyh8k" path="res://audio/sfx/yawn.mp3" id="54_0loja"]
+[ext_resource type="Script" uid="uid://b4yorasutwgh1" path="res://scenes/sleep_label.gd" id="55_ids8r"]
+[ext_resource type="FontFile" uid="uid://ep4kqvu2c3tj" path="res://assets/fonts/SpecialElite-Regular.ttf" id="56_dnhof"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 shader = ExtResource("5_tbgi4")
@@ -185,11 +189,19 @@ size_flags_vertical = 6
 color = Color(1, 1, 1, 0)
 
 [node name="Debug" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="FPS" type="Label" parent="Debug"]
 offset_right = 85.0
 offset_bottom = 23.0
 text = "FPS: 120"
+
+[node name="Reset" type="Label" parent="Debug"]
+offset_left = 454.0
+offset_top = 2.0
+offset_right = 638.0
+offset_bottom = 25.0
+text = "Press X to get UNSTUCK"
 
 [node name="Utils" type="Node" parent="Debug"]
 script = ExtResource("24_y6deb")
@@ -249,7 +261,7 @@ mesh = SubResource("PlaneMesh_jbj1t")
 skeleton = NodePath("../../..")
 
 [node name="flag" parent="Room/Decorations" instance=ExtResource("6_tefeu")]
-transform = Transform3D(-0.62, -8.05958e-10, 9.35978e-08, 1.10864e-09, 0.61987, 0.0126814, -9.35947e-08, 0.0126814, -0.61987, 2.01493, 0.889775, 0.0342404)
+transform = Transform3D(0.62, 0, 0, 0, 0.619864, 0.0129843, 0, -0.0129843, 0.619864, -2.01082, 0.117176, 2.03957)
 
 [node name="Window" type="MeshInstance3D" parent="Room/Decorations"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.592934, -2.54875)
@@ -261,7 +273,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(-0.645, 0, 9.73923e-08, 0, 0.645, 0, -9.73923e-08, 0, -0.645, 1.57543, -0.00601077, 2.49969)
 
 [node name="posters2" parent="Room/Decorations" instance=ExtResource("17_muem4")]
-transform = Transform3D(0.00349064, 0, -0.999994, 0, 1, 0, 0.999994, 0, 0.00349064, 2.00173, 0.230844, -0.470264)
+transform = Transform3D(0.00349064, 0, -0.999994, 0, 1, 0, 0.999994, 0, 0.00349064, 2.00173, -0.176914, -0.470264)
 
 [node name="door" parent="Room/Decorations" instance=ExtResource("18_dp3eg")]
 transform = Transform3D(-4.67712e-08, 0, 1.07, 0, 1.07, 0, -1.07, 0, -4.67712e-08, -2.13252, -0.146324, -1.43566)
@@ -282,7 +294,7 @@ stream = ExtResource("15_txyw0")
 volume_db = -15.856
 
 [node name="map" parent="Room/Decorations" instance=ExtResource("15_0ld40")]
-transform = Transform3D(-1.48619e-08, 0, -0.34, 0, 0.34, 0, 0.34, 0, -1.48619e-08, 1.98992, 0.173191, 1.58475)
+transform = Transform3D(-1.48619e-08, 0, -0.34, 0, 0.34, 0, 0.34, 0, -1.48619e-08, 1.98992, -0.0458734, 1.99827)
 
 [node name="cabinet4" parent="Room/Decorations" instance=ExtResource("16_yc10j")]
 transform = Transform3D(0.998135, 0, -0.0610485, 0, 1, 0, 0.0610485, 0, 0.998135, -1.05808, -0.96024, -2.42972)
@@ -297,7 +309,7 @@ transform = Transform3D(-0.999848, 0, -0.0174525, 0, 1, 0, 0.0174525, 0, -0.9998
 transform = Transform3D(-0.416171, 1.18931, -1.55317, 1.90441, -0.116729, -0.599667, -0.447245, -1.60372, -1.10818, -1.91012, -0.802569, -2.30078)
 
 [node name="trashcan" parent="Room/Decorations" instance=ExtResource("50_j2jfr")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 1.74297, -0.998488, 0.911406)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.470639, -0.998488, 2.13981)
 
 [node name="pipes" parent="Room/Decorations" instance=ExtResource("22_j8jky")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.49213, 1.11563, -2.76269)
@@ -306,12 +318,13 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.4921
 transform = Transform3D(0.0251156, 0, 0.689543, 0, 0.69, 0, -0.689543, 0, 0.0251156, -5.256, 0, -0.871)
 
 [node name="Terminal" type="Node3D" parent="Room"]
+visible = false
 
 [node name="terminal_model" parent="Room/Terminal" instance=ExtResource("8_tipki")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000570774, 0.275077, 0.00134289)
 
 [node name="Knobs" type="Node3D" parent="Room"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0250625, 0.0177842, -0.0449966)
+transform = Transform3D(0.998244, -0.0592367, 0, 0.0592367, 0.998244, 0, 0, 0, 1, -0.0745574, -0.149307, -0.0449966)
 script = ExtResource("18_tel4y")
 
 [node name="L_Knob" type="MeshInstance3D" parent="Room/Knobs"]
@@ -335,6 +348,20 @@ script = ExtResource("19_yq6so")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.869366, -0.519451, 1.91406)
 shape = SubResource("BoxShape3D_2f3dj")
 
+[node name="Yawn" type="AudioStreamPlayer" parent="Room/BedInteract"]
+stream = ExtResource("54_0loja")
+volume_db = -8.432
+script = ExtResource("55_ids8r")
+
+[node name="SleepLabel" type="Label" parent="Room/BedInteract/Yawn"]
+offset_left = 184.0
+offset_top = 4.0
+offset_right = 569.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("56_dnhof")
+theme_override_font_sizes/font_size = 24
+text = "Time for bed, comrade"
+
 [node name="ColorRect" type="ColorRect" parent="Room/BedInteract"]
 visible = false
 anchors_preset = 15
@@ -351,7 +378,7 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.612287, -0.134089, -
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.37888, -1.05, 2.02)
 
 [node name="Chair" parent="Room" instance=ExtResource("49_ty1g6")]
-transform = Transform3D(0.631583, 0, -0.775308, 0, 1, 0, 0.775308, 0, 0.631583, 0.836915, -0.962272, -1.81836)
+transform = Transform3D(0.631583, 0, -0.775308, 0, 1, 0, 0.775308, 0, 0.631583, 0.734034, -0.962272, -1.92592)
 
 [node name="Storage" type="Node3D" parent="Room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3263, 0)
@@ -627,8 +654,11 @@ transform = Transform3D(-1.5, 0, 2.59808, 0, 3, 0, -2.59808, 0, -1.5, -10.3957, 
 [node name="Terminal" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3263, 0)
 
+[node name="TerminalMeshNew" parent="Terminal" instance=ExtResource("53_o7ddy")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -0.610758, 0.66448, 0.132202)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Terminal"]
-transform = Transform3D(-4.28344e-08, -0.980258, -0.197726, -8.71165e-09, 0.197726, -0.980258, 1, -4.02663e-08, -1.70091e-08, 1.57487, -0.0333914, -0.520439)
+transform = Transform3D(1.31134e-07, -1, -4.37114e-08, -3.82137e-15, 4.37114e-08, -1, 1, 1.31134e-07, 1.91069e-15, 1.41298, -0.0675154, -0.520439)
 material_override = SubResource("StandardMaterial3D_og1vs")
 mesh = SubResource("PlaneMesh_y6deb")
 
@@ -642,7 +672,7 @@ render_target_update_mode = 4
 [node name="ViewportUI" parent="Terminal/SubViewport" instance=ExtResource("24_og1vs")]
 
 [node name="MonitorCamera3D" type="Camera3D" parent="Terminal"]
-transform = Transform3D(-4.27635e-08, 0.207127, -0.978314, 9.05373e-09, 0.978314, 0.207127, 1, 6.03961e-14, -4.37114e-08, 0.602918, 0.114964, -0.523553)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.431813, -0.130923, -0.523553)
 fov = 41.3
 
 [node name="TerminalInteract" type="StaticBody3D" parent="Terminal" groups=["terminal"]]
@@ -656,10 +686,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0849609, -0.54657, -0.11454
 shape = SubResource("BoxShape3D_og1vs")
 
 [node name="Speaker" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9254, 1.78606, -0.913907)
+transform = Transform3D(0.994692, 0, 0.102897, 0, 1, 0, -0.102897, 0, 0.994692, 1.74169, 0.991004, 0.320676)
 
 [node name="Mesh" parent="Speaker" instance=ExtResource("27_2f3dj")]
-transform = Transform3D(-0.895, 0, -1.35141e-07, 0, 0.895, 0, 1.35141e-07, 0, -0.895, 0, -0.0281245, 0)
+transform = Transform3D(-0.895, 0, -1.3411e-07, 0, 0.895, 0, 1.3411e-07, 0, -0.895, -0.0129651, -0.0281245, 0.125333)
 
 [node name="ToggleSpeaker" type="StaticBody3D" parent="Speaker/Mesh"]
 collision_layer = 2
@@ -670,7 +700,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0144045, 0.0142517, -0.0166
 shape = SubResource("BoxShape3D_5q0nq")
 
 [node name="Lights" type="Node3D" parent="Speaker"]
-transform = Transform3D(0.895, 0, 0, 0, 0.895, 0, 0, 0, 0.895, 0, -0.0281245, 0)
+transform = Transform3D(0.895, 0, 0, 0, 0.895, 0, 0, 0, 0.895, -0.0198241, -0.0281245, 0.0277829)
 script = ExtResource("30_fv21b")
 
 [node name="red_light" type="OmniLight3D" parent="Speaker/Lights"]
@@ -741,7 +771,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115417, 0)
 shape = SubResource("CylinderShape3D_2cjbq")
 
 [node name="TapeRecorder" parent="." instance=ExtResource("46_txyw0")]
-transform = Transform3D(-0.354895, 0, -0.934906, 0, 1, 0, 0.934906, 0, -0.354895, 1.7594, 1.7105, 0.397459)
+transform = Transform3D(-0.354895, 0, -0.934906, 0, 1, 0, 0.934906, 0, -0.354895, 1.7594, 0.912813, 0.996284)
 
 [node name="crate2" parent="." instance=ExtResource("52_bu4jf")]
-transform = Transform3D(0.981946, 0, 0.189164, 0, 1, 0, -0.189164, 0, 0.981946, 1.68642, 0.251753, -0.637498)
+transform = Transform3D(0.981946, 0, 0.189164, 0, 1, 0, -0.189164, 0, 0.981946, 1.56208, 0.251753, -1.90262)

@@ -5,11 +5,13 @@ extends OmniLight3D
 @export var flicker_strength: float = 0.6
 @export var flicker_speed: float = 0.05
 var base_energy: float
+var lower_energy: float
 
 
 
 func _ready() -> void:
 	base_energy = light_energy
+	lower_energy = base_energy * 0.75
 	_start_flicker_loop()
 
 func _start_flicker_loop() -> void:
@@ -20,7 +22,9 @@ func _start_flicker_loop() -> void:
 func _flicker() -> void:
 	$Flicker.play()
 	if GameManager.day == 3:
-		base_energy *= 0.75
+		base_energy = lower_energy
+	if GameManager.day == 5:
+		base_energy *= 0.9
 	
 	var pulses := randi_range(2, 5)
 	for i in range(pulses):

@@ -6,6 +6,7 @@ extends CharacterBody3D
 var gravity := -9.8 * 1.25
 var velocity_y := 0.0
 
+var spawn_pos: Vector3
 
 @onready var terminal = null
 
@@ -25,6 +26,8 @@ func _ready():
 	interact_label.visible = false
 	GameState.start_transform = global_transform
 	GameState.start_camera_transform = player_camera.global_transform
+	
+	spawn_pos = global_position
 
 
 func _input(event):
@@ -69,13 +72,19 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		return # jump disabled rn
 		velocity.y = jump_power
+		
+	if Input.is_action_just_pressed("reset"):
+		global_position = spawn_pos
 
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_cancel") and !GameState.using_terminal:
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			$"../Debug".visible = false
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			$"../Debug".visible = true
 
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var strafe_direction = transform.basis.x * input_dir.x

@@ -10,6 +10,7 @@ var signals_solved := 0
 var player_slept_today := false
 
 @onready var speaker := $"/root/Node3D/Speaker"
+@onready var yawn := $"/root/Node3D/Room/BedInteract/Yawn"
 
 @onready var solve_sounds_1 := [
 	"res://audio/signals/static.wav",
@@ -111,6 +112,7 @@ func _on_signal_solved():
 func end_day():
 	print("PHONE CALL: Time for sleep.")
 	GameState.can_sleep = true
+	yawn.play()
 	emit_signal("day_completed", day)
 	
 	# Wait for the player to actually sleep (interact with bed)
