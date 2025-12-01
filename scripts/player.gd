@@ -72,7 +72,6 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		return # jump disabled rn
 		velocity.y = jump_power
 		
 	if Input.is_action_just_pressed("reset"):

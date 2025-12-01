@@ -294,22 +294,22 @@ stream = ExtResource("15_txyw0")
 volume_db = -15.856
 
 [node name="map" parent="Room/Decorations" instance=ExtResource("15_0ld40")]
-transform = Transform3D(-1.48619e-08, 0, -0.34, 0, 0.34, 0, 0.34, 0, -1.48619e-08, 1.98992, -0.0458734, 1.99827)
+transform = Transform3D(-1.48619e-08, 0, -0.34, 0, 0.34, 0, 0.34, 0, -1.48619e-08, 1.98992, 0.183694, 1.54333)
 
 [node name="cabinet4" parent="Room/Decorations" instance=ExtResource("16_yc10j")]
-transform = Transform3D(0.998135, 0, -0.0610485, 0, 1, 0, 0.0610485, 0, 0.998135, -1.05808, -0.96024, -2.42972)
+transform = Transform3D(0.998135, 0, -0.0610485, 0, 1, 0, 0.0610485, 0, 0.998135, -1.05808, -0.965693, -2.42972)
 
 [node name="cabinet3" parent="Room/Decorations" instance=ExtResource("16_yc10j")]
-transform = Transform3D(0.997564, 0, 0.0697565, 0, 1, 0, -0.0697565, 0, 0.997564, -0.533863, -0.96024, -2.45744)
+transform = Transform3D(0.997564, 0, 0.0697565, 0, 1, 0, -0.0697565, 0, 0.997564, -0.533863, -0.965693, -2.45744)
 
 [node name="bed2" parent="Room/Decorations" instance=ExtResource("22_jscy8")]
-transform = Transform3D(-0.999848, 0, -0.0174525, 0, 1, 0, 0.0174525, 0, -0.999848, 0.795139, -0.875, 1.86499)
+transform = Transform3D(-1.09983, 0, -0.0191977, 0, 1.1, 0, 0.0191977, 0, -1.09983, 0.795139, -0.911423, 1.86499)
 
 [node name="ak47" parent="Room/Decorations" instance=ExtResource("43_chjal")]
 transform = Transform3D(-0.416171, 1.18931, -1.55317, 1.90441, -0.116729, -0.599667, -0.447245, -1.60372, -1.10818, -1.91012, -0.802569, -2.30078)
 
 [node name="trashcan" parent="Room/Decorations" instance=ExtResource("50_j2jfr")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.470639, -0.998488, 2.13981)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.606182, -1.11055, 2.13981)
 
 [node name="pipes" parent="Room/Decorations" instance=ExtResource("22_j8jky")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.49213, 1.11563, -2.76269)
@@ -375,19 +375,19 @@ color = Color(0, 0, 0, 1)
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.612287, -0.134089, -2.25926)
 
 [node name="toilet" parent="Room" instance=ExtResource("47_vc5cj")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.37888, -1.05, 2.02)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.37888, -1.10818, 2.02)
 
 [node name="Chair" parent="Room" instance=ExtResource("49_ty1g6")]
-transform = Transform3D(0.631583, 0, -0.775308, 0, 1, 0, 0.775308, 0, 0.631583, 0.734034, -0.962272, -1.92592)
+transform = Transform3D(0.631583, 0, -0.775308, 0, 1, 0, 0.775308, 0, 0.631583, 0.734034, -0.993813, -1.92592)
 
 [node name="Storage" type="Node3D" parent="Room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3263, 0)
 
 [node name="storage" parent="Room/Storage" instance=ExtResource("51_bjg73")]
-transform = Transform3D(-0.635, 0, 5.55135e-08, 0, 0.635, 0, -5.55135e-08, 0, -0.635, -1.86546, 0.708728, 0.19223)
+transform = Transform3D(-0.635, 0, 5.55135e-08, 0, 0.635, 0, -5.55135e-08, 0, -0.635, -1.86546, 0.651642, 0.19223)
 
 [node name="storage2" parent="Room/Storage" instance=ExtResource("51_bjg73")]
-transform = Transform3D(-0.634863, 0, -0.0131654, 0, 0.635, 0, 0.0131654, 0, -0.634863, -1.86546, 0.708728, 1.14395)
+transform = Transform3D(-0.634863, 0, -0.0131654, 0, 0.635, 0, 0.0131654, 0, -0.634863, -1.86546, 0.651642, 1.14395)
 
 [node name="Outside" type="Node3D" parent="."]
 
@@ -774,4 +774,7 @@ shape = SubResource("CylinderShape3D_2cjbq")
 transform = Transform3D(-0.354895, 0, -0.934906, 0, 1, 0, 0.934906, 0, -0.354895, 1.7594, 0.912813, 0.996284)
 
 [node name="crate2" parent="." instance=ExtResource("52_bu4jf")]
-transform = Transform3D(0.981946, 0, 0.189164, 0, 1, 0, -0.189164, 0, 0.981946, 1.56208, 0.251753, -1.90262)
+transform = Transform3D(0.981946, 0, 0.189164, 0, 1, 0, -0.189164, 0, 0.981946, 1.55153, 0.251753, -1.80865)
+
+[node name="crate3" parent="." instance=ExtResource("52_bu4jf")]
+transform = Transform3D(0.92721, 0, 0.374542, 0, 1, 0, -0.374542, 0, 0.92721, 1.57166, 0.655864, -1.83681)
