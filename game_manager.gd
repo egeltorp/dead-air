@@ -125,7 +125,7 @@ func _on_signal_solved():
 
 
 func end_day():
-	if day == 1:
+	if day == 5:
 		$"/root/Node3D/Player".freeze()
 		return
 		
