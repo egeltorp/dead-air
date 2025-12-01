@@ -36,8 +36,8 @@ func _on_day_started(day: int):
 			print("Weather: Rain + Forest")
 		
 		4:
-			rain.play()
 			wind.play()
+			forest.play()
 			env.fog_light_color = col_grey
 			print("Weather: Rain + Wind")
 		

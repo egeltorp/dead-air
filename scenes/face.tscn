@@ -1,13 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvicheq0moiu3"]
+[gd_scene load_steps=6 format=3 uid="uid://bvicheq0moiu3"]
 
 [ext_resource type="PackedScene" uid="uid://cm1uiqulfceas" path="res://assets/models/face.glb" id="1_3alo4"]
-[ext_resource type="Texture2D" uid="uid://c3kn75eja5dlg" path="res://assets/models/face_face.png" id="2_lxkqd"]
+[ext_resource type="Texture2D" uid="uid://csnqr15avwy11" path="res://assets/textures/face.jpg" id="3_a50ll"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a50ll"]
 shading_mode = 0
-albedo_texture = ExtResource("2_lxkqd")
+albedo_color = Color(0.400698, 0.400698, 0.400698, 1)
+albedo_texture = ExtResource("3_a50ll")
+uv1_scale = Vector3(1.36, 1.495, 1)
+uv1_offset = Vector3(-0.25, -0.325, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3g35f"]
+shading_mode = 0
+albedo_color = Color(0.703808, 0.703808, 0.703808, 1)
+albedo_texture = ExtResource("3_a50ll")
+uv1_scale = Vector3(0.81, 0.895, 1)
+uv1_offset = Vector3(0.105, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lxkqd"]
+lightmap_size_hint = Vector2i(7, 12)
+size = Vector2(0.91, 1.15)
 
 [node name="face" instance=ExtResource("1_3alo4")]
 
 [node name="Sphere" parent="." index="0"]
 material_override = SubResource("StandardMaterial3D_a50ll")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 0, -0.128989, 0.150851)
+visible = false
+material_override = SubResource("StandardMaterial3D_3g35f")
+mesh = SubResource("PlaneMesh_lxkqd")

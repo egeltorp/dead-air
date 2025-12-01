@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bssk4rfoechnc" path="res://scenes/chair.tscn" id="1_wjcgw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e16ty"]
-size = Vector3(1.12842, 1.01318, 1.04486)
+size = Vector3(1.12842, 0.570556, 1.04486)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2sp2j"]
 size = Vector3(1.09009, 0.809814, 0.12793)
@@ -13,7 +13,7 @@ size = Vector3(1.09009, 0.809814, 0.12793)
 [node name="RigidBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, -0.0244373, 0.00310832, 0.00967407)
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, -0.0244373, -0.118613, 0.00967407)
 shape = SubResource("BoxShape3D_e16ty")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="RigidBody3D"]

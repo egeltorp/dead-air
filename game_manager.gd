@@ -5,7 +5,7 @@ signal day_completed(day)
 signal all_days_completed()
 signal sound_over()
 
-var day := 1
+var day := 2
 var signals_solved := 0
 var player_slept_today := false
 
@@ -13,17 +13,32 @@ var player_slept_today := false
 @onready var yawn := $"/root/Node3D/Room/BedInteract/Yawn"
 
 @onready var solve_sounds_1 := [
-	"res://audio/signals/static.wav",
+	"res://audio/signals/day1_signal1.wav",
 	"res://audio/signals/day1_signal2.wav",
 	"res://audio/signals/day1_signal3.wav",
 ]
 @onready var solve_sounds_2 := [
-	"res://audio/signals/static.wav",
+	"res://audio/signals/day2_signal1.wav",
 	"res://audio/signals/day2_signal2.wav",
-	"res://audio/signals/static.wav",
+	"res://audio/signals/day2_signal3.wav",
+]
+@onready var solve_sounds_3 := [
+	"res://audio/signals/day3_signal1.wav",
+	"res://audio/signals/day3_signal2.wav",
+	"res://audio/signals/day3_signal3.wav",
+]
+@onready var solve_sounds_4 := [
+	"res://audio/signals/day4_signal1.wav",
+	"res://audio/signals/day4_signal2.wav",
+	"res://audio/signals/day4_signal3.wav",
+]
+@onready var solve_sounds_5 := [
+	"res://audio/signals/day5_signal1.wav",
+	"res://audio/signals/day5_signal2.wav",
+	"res://audio/signals/day5_signal3.wav",
 ]
 
-@onready var day_sounds := [solve_sounds_1, solve_sounds_2]
+@onready var day_sounds := [solve_sounds_1, solve_sounds_2, solve_sounds_3, solve_sounds_4, solve_sounds_5]
 
 var running := false
 

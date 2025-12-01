@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=87 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Environment" uid="uid://c85h52h28nlob" path="res://scenes/main_environment.tres" id="2_5he1u"]
@@ -55,7 +55,11 @@
 [ext_resource type="PackedScene" uid="uid://c5py37eltqcor" path="res://scenes/new_terminal.tscn" id="53_o7ddy"]
 [ext_resource type="AudioStream" uid="uid://bh4w3alkdyh8k" path="res://audio/sfx/yawn.mp3" id="54_0loja"]
 [ext_resource type="Script" uid="uid://b4yorasutwgh1" path="res://scenes/sleep_label.gd" id="55_ids8r"]
+[ext_resource type="AudioStream" uid="uid://u26hdbtm46j0" path="res://audio/sfx/door-slam.wav" id="56_1v6qk"]
 [ext_resource type="FontFile" uid="uid://ep4kqvu2c3tj" path="res://assets/fonts/SpecialElite-Regular.ttf" id="56_dnhof"]
+[ext_resource type="AudioStream" uid="uid://drjuv8u2y1f0h" path="res://audio/sfx/howl.mp3" id="57_augu2"]
+[ext_resource type="AudioStream" uid="uid://2f5xshnvcusm" path="res://audio/sfx/FlashlightActivate.wav" id="57_tm6hj"]
+[ext_resource type="AudioStream" uid="uid://d4dgiri03npth" path="res://audio/sfx/breaking-glass.wav" id="59_kf5aa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 shader = ExtResource("5_tbgi4")
@@ -81,6 +85,14 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_sugp2")
 size = Vector2(50, 50)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muem4"]
+albedo_texture = ExtResource("6_o6xl0")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dp3eg"]
+top_radius = 0.12
+bottom_radius = 0.12
+height = 0.1
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbj1t"]
 albedo_color = Color(1, 0.964706, 0.384314, 1)
 albedo_texture = ExtResource("6_o6xl0")
@@ -92,14 +104,6 @@ texture_filter = 0
 [sub_resource type="CylinderMesh" id="CylinderMesh_muem4"]
 top_radius = 0.1
 bottom_radius = 0.1
-height = 0.1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muem4"]
-albedo_texture = ExtResource("6_o6xl0")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_dp3eg"]
-top_radius = 0.12
-bottom_radius = 0.12
 height = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkv2x"]
@@ -224,6 +228,18 @@ transform = Transform3D(0.944376, 0, 0.328867, 0, 1, 0, -0.328867, 0, 0.944376, 
 [node name="Room" parent="." instance=ExtResource("4_jyhfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3263, 0)
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27377, -0.00164304)
+material_override = SubResource("StandardMaterial3D_muem4")
+mesh = SubResource("CylinderMesh_dp3eg")
+skeleton = NodePath("../LampShade")
+
+[node name="LampShade" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26817, 0)
+material_override = SubResource("StandardMaterial3D_jbj1t")
+mesh = SubResource("CylinderMesh_muem4")
+skeleton = NodePath("../CeilingLight")
+
 [node name="CeilingLight" type="OmniLight3D" parent="Room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12317, 0)
 light_color = Color(0.88, 0.77836, 0.3256, 1)
@@ -241,16 +257,6 @@ autoplay = true
 [node name="Flicker" type="AudioStreamPlayer3D" parent="Room/CeilingLight"]
 stream = ExtResource("8_eb6dy")
 volume_db = -15.855
-
-[node name="LampShade" type="MeshInstance3D" parent="Room/CeilingLight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144997, 0)
-material_override = SubResource("StandardMaterial3D_jbj1t")
-mesh = SubResource("CylinderMesh_muem4")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/CeilingLight/LampShade"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00559807, -0.00164304)
-material_override = SubResource("StandardMaterial3D_muem4")
-mesh = SubResource("CylinderMesh_dp3eg")
 
 [node name="Decorations" type="Node3D" parent="Room"]
 
@@ -316,6 +322,12 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.4921
 
 [node name="pipes" parent="Room/Decorations/pipes" instance=ExtResource("26_nvyfr")]
 transform = Transform3D(0.0251156, 0, 0.689543, 0, 0.69, 0, -0.689543, 0, 0.0251156, -5.256, 0, -0.871)
+
+[node name="crate2" parent="Room/Decorations" instance=ExtResource("52_bu4jf")]
+transform = Transform3D(0.981946, 0, 0.189164, 0, 1, 0, -0.189164, 0, 0.981946, 1.55153, -1.07455, -1.80865)
+
+[node name="crate3" parent="Room/Decorations" instance=ExtResource("52_bu4jf")]
+transform = Transform3D(0.92721, 0, 0.374542, 0, 1, 0, -0.374542, 0, 0.92721, 1.57166, -0.670436, -1.83681)
 
 [node name="Terminal" type="Node3D" parent="Room"]
 visible = false
@@ -735,7 +747,8 @@ volume_db = -14.991
 
 [node name="WindPlayer" type="AudioStreamPlayer" parent="WeatherControl"]
 stream = ExtResource("2_yc10j")
-volume_db = -4.685
+volume_db = -2.811
+pitch_scale = 1.19
 
 [node name="ThunderPlayer" type="AudioStreamPlayer3D" parent="WeatherControl"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.50315, 0)
@@ -770,11 +783,22 @@ freeze = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115417, 0)
 shape = SubResource("CylinderShape3D_2cjbq")
 
+[node name="Doorslam" type="AudioStreamPlayer3D" parent="Anomalies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32322, 1.19209e-07, -2.49016)
+stream = ExtResource("56_1v6qk")
+volume_db = -2.883
+pitch_scale = 0.75
+
+[node name="FlashlightActivate" type="AudioStreamPlayer" parent="Anomalies"]
+stream = ExtResource("57_tm6hj")
+
+[node name="Howl" type="AudioStreamPlayer3D" parent="Anomalies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.82271, 4.03301, -14.3767)
+stream = ExtResource("57_augu2")
+
+[node name="LightBreak" type="AudioStreamPlayer3D" parent="Anomalies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.52011, 0)
+stream = ExtResource("59_kf5aa")
+
 [node name="TapeRecorder" parent="." instance=ExtResource("46_txyw0")]
 transform = Transform3D(-0.354895, 0, -0.934906, 0, 1, 0, 0.934906, 0, -0.354895, 1.7594, 0.912813, 0.996284)
-
-[node name="crate2" parent="." instance=ExtResource("52_bu4jf")]
-transform = Transform3D(0.981946, 0, 0.189164, 0, 1, 0, -0.189164, 0, 0.981946, 1.55153, 0.251753, -1.80865)
-
-[node name="crate3" parent="." instance=ExtResource("52_bu4jf")]
-transform = Transform3D(0.92721, 0, 0.374542, 0, 1, 0, -0.374542, 0, 0.92721, 1.57166, 0.655864, -1.83681)

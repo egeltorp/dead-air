@@ -15,6 +15,7 @@ var spawn_pos: Vector3
 @onready var interact_cursor = $InteractCursor
 @onready var regular_cursor = $RegularCursor
 @onready var interact_label = $InteractionText
+@onready var click = $Click
 
 var current_interactable: Interactable = null
 
@@ -123,6 +124,8 @@ func exit_terminal():
 func show_interact():
 	regular_cursor.visible = false
 	interact_cursor.visible = true
+	if Input.is_action_just_pressed("interact"):
+		click.play()
 	
 func hide_interact():
 	regular_cursor.visible = true
