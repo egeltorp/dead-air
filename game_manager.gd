@@ -5,7 +5,7 @@ signal day_completed(day)
 signal all_days_completed()
 signal sound_over()
 
-var day := 2
+var day := 1
 var signals_solved := 0
 var player_slept_today := false
 
@@ -125,10 +125,15 @@ func _on_signal_solved():
 
 
 func end_day():
+	if day == 1:
+		$"/root/Node3D/Player".freeze()
+		return
+		
 	print("PHONE CALL: Time for sleep.")
 	GameState.can_sleep = true
 	yawn.play()
 	emit_signal("day_completed", day)
+	
 	
 	# Wait for the player to actually sleep (interact with bed)
 	await _wait_for_sleep()

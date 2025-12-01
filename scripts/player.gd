@@ -11,6 +11,8 @@ var spawn_pos: Vector3
 @onready var terminal = null
 
 @onready var player_camera := $Camera3D
+@onready var ending_camera := $"../Ending/Camera3D"
+
 @onready var ray := $Camera3D/InteractionRay
 @onready var interact_cursor = $InteractCursor
 @onready var regular_cursor = $RegularCursor
@@ -43,6 +45,9 @@ func _input(event):
 
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("reset"):
+		global_position = spawn_pos
+	
 	if GameState.using_terminal:
 		WaveformManager.update_player_tuning(delta)
 		regular_cursor.visible = false
@@ -74,9 +79,6 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_power
-		
-	if Input.is_action_just_pressed("reset"):
-		global_position = spawn_pos
 
 	if Input.is_action_just_pressed("ui_cancel") and !GameState.using_terminal:
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
@@ -138,3 +140,16 @@ func clear_interactable():
 	
 func sleep():
 	set_physics_process(false)
+
+func freeze():
+	set_physics_process(false)
+	$"../Ending/Horror".play()
+	$"../Ending/face2".visible = true
+	player_camera.current = false
+	ending_camera.current = true
+	await get_tree().create_timer(5).timeout
+	$"../Room/BedInteract/ColorRect".visible = true
+	await get_tree().create_timer(3).timeout
+	$"../Ending/Label".visible = true
+	await get_tree().create_timer(10).timeout
+	get_tree().quit()

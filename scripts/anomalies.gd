@@ -34,6 +34,7 @@ func _on_day_started(day: int):
 			$LightBreak.play()
 			if $"../Room/CeilingLight".visible == true:
 				$"../Room/CeilingLight".visible = false
+				
 			$"../Room/LampShade".visible = false
 			await get_tree().create_timer(3).timeout
 			$FlashlightActivate.play()

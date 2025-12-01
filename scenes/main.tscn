@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://c8conyom331wr"]
+[gd_scene load_steps=89 format=3 uid="uid://c8conyom331wr"]
 
 [ext_resource type="PackedScene" uid="uid://b6omrl7vx6ips" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Environment" uid="uid://c85h52h28nlob" path="res://scenes/main_environment.tres" id="2_5he1u"]
@@ -60,6 +60,7 @@
 [ext_resource type="AudioStream" uid="uid://drjuv8u2y1f0h" path="res://audio/sfx/howl.mp3" id="57_augu2"]
 [ext_resource type="AudioStream" uid="uid://2f5xshnvcusm" path="res://audio/sfx/FlashlightActivate.wav" id="57_tm6hj"]
 [ext_resource type="AudioStream" uid="uid://d4dgiri03npth" path="res://audio/sfx/breaking-glass.wav" id="59_kf5aa"]
+[ext_resource type="AudioStream" uid="uid://trubb51e7ngv" path="res://audio/sfx/ending_horror.wav" id="61_t5ykj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 shader = ExtResource("5_tbgi4")
@@ -123,6 +124,9 @@ texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_txyw0"]
 size = Vector3(0.355957, 0.705566, 0.139709)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t5ykj"]
+size = Vector3(1.1001, 2.88226, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6deb"]
 albedo_texture = ExtResource("7_pm3ni")
@@ -316,6 +320,12 @@ transform = Transform3D(-0.416171, 1.18931, -1.55317, 1.90441, -0.116729, -0.599
 
 [node name="trashcan" parent="Room/Decorations" instance=ExtResource("50_j2jfr")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.606182, -1.11055, 2.13981)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Room/Decorations/trashcan"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Decorations/trashcan/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0500488, 0.941131, 0)
+shape = SubResource("BoxShape3D_t5ykj")
 
 [node name="pipes" parent="Room/Decorations" instance=ExtResource("22_j8jky")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.49213, 1.11563, -2.76269)
@@ -802,3 +812,38 @@ stream = ExtResource("59_kf5aa")
 
 [node name="TapeRecorder" parent="." instance=ExtResource("46_txyw0")]
 transform = Transform3D(-0.354895, 0, -0.934906, 0, 1, 0, 0.934906, 0, -0.354895, 1.7594, 0.912813, 0.996284)
+
+[node name="Ending" type="Node3D" parent="."]
+
+[node name="Horror" type="AudioStreamPlayer" parent="Ending"]
+stream = ExtResource("61_t5ykj")
+volume_db = -1.874
+pitch_scale = 0.92
+
+[node name="face2" parent="Ending" instance=ExtResource("42_2cjbq")]
+transform = Transform3D(0.78366, 0, 0.160862, 0, 0.8, 0, -0.160862, 0, 0.78366, -0.357406, 1.93918, -2.89545)
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="Ending"]
+transform = Transform3D(0.95691, 0, 0.290385, 0, 1, 0, -0.290385, 0, 0.95691, 1.11362, 1.77004, 1.90857)
+fov = 31.7
+
+[node name="Label" type="Label" parent="Ending"]
+visible = false
+offset_left = 104.0
+offset_top = 160.0
+offset_right = 563.0
+offset_bottom = 202.0
+theme_override_fonts/font = ExtResource("56_dnhof")
+theme_override_font_sizes/font_size = 41
+text = "Thanks for playing!"
+
+[node name="Exit" type="Label" parent="Ending"]
+visible = false
+offset_left = 181.0
+offset_top = 200.0
+offset_right = 640.0
+offset_bottom = 242.0
+theme_override_fonts/font = ExtResource("56_dnhof")
+theme_override_font_sizes/font_size = 26
+text = "Press ESCAPE to Quit"
